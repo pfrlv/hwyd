@@ -176,13 +176,27 @@ button {
   max-width: 340px;
   margin: auto;
   color: #fff;
+  will-chnage: transform, bottom;
+  transition: transform 250ms cubic-bezier(.175,.8,.35,1.375), bottom 250ms cubic-bezier(.175,.8,.35,1.375);
+}
+
+.alert__hidden {
+  bottom: 35px;
+  transform: translate3d(0, 100%, 0);
 }
 
 .alert__msg {
   text-align: center;
   font-size: 16px;
   line-height: 25px;
+  will-chnage: visibility;
+  transition: visibility 0ms;
 }
+
+.alert__hidden .alert__msg {
+    visibility: hidden;
+    transition-delay: 250ms;
+  }
 
 .alert__hide {
   display: block;
@@ -203,7 +217,7 @@ button {
     content: '';
     display: block;
     width: 40px;
-    height: 4px;
+    height: 5px;
     border-radius: 40px;
     background-color: #fff;
   }

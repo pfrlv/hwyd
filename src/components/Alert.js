@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import classes from 'classnames'
+
 import Random from './../helpers/random'
 
 const messages = [
@@ -12,14 +14,26 @@ export default class extends Component {
     super(props)   
 
     this.state = {
-      message: messages[Random(0, (messages.length - 1))]
+      message: messages[Random(0, (messages.length - 1))],
+      isHidden: false
     }
+
+    this.toggle = this.toggle.bind(this)
+  }
+
+  toggle () {
+    this.setState(prevState => ({
+      isHidden: !prevState.isHidden
+    }))
   }
 
   render() {
     return (
-      <div className="alert">
-        <button className="alert__hide" title="Hide Message"></button>
+      <div className={classes({
+        alert: true,
+        alert__hidden: this.state.isHidden
+      })}>
+        <button className="alert__hide" title="Hide Message" onClick={this.toggle} />
         <p className="alert__msg">{this.state.message}</p>
       </div>
     )

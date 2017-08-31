@@ -5,6 +5,7 @@
   "repository": "https://github.com/pfrlv/hwyd",
   "dependencies": {
     "autoprefixer": "^7.1.3",
+    "classnames": "^2.2.5",
     "cssnano": "^3.10.0",
     "postcss-cli": "^4.1.0",
     "postcss-import": "^10.0.0",

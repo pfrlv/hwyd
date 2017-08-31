@@ -63,9 +63,10 @@
   padding: 0 10px;
 
   &:link,
-  &:active,
-  &:visited {
+  &:active {
     color: inherit;
     text-decoration: none;
   }
 }
+
+.header-link_italic { font-style: italic; }

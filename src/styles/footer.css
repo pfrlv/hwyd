@@ -53,3 +53,5 @@
   &:hover,
   &:active { color: $white; }
 }
+
+.footer-txt_italic { font-style: italic; }

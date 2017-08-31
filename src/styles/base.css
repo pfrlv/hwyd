@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Heebo:400,500');
 
+* {
+  outline: none;
+}
+
 html {
   margin: 0;
   padding: 0;
@@ -19,4 +23,17 @@ body {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  background: none;
 }

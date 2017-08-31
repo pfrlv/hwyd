@@ -43,15 +43,15 @@
 
   &:first-child { padding-left: 0; }
   &:last-of-type { padding-right: 30px; }
+
+  &_link {
+    padding: 0 30px;
+    will-change: color;
+    transition: color 160ms ease;
+
+    &:hover,
+    &:active { color: $white; }
+  }
+
+  &_italic { font-style: italic; }
 }
-
-.footer-txt_link {
-  padding: 0 30px;
-  will-change: color;
-  transition: color 160ms ease;
-
-  &:hover,
-  &:active { color: $white; }
-}
-
-.footer-txt_italic { font-style: italic; }

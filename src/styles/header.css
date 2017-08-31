@@ -1,3 +1,7 @@
+.header-wrap {
+  height: @(min-width: $tabletLandscapeUp) 100px;
+}
+
 .header-container {
   &_mobile {
     display: block @(min-width: $tabletLandscapeUp) none;
@@ -8,6 +12,7 @@
     white-space: nowrap;
     border-bottom: 1px solid $gray;
     color: $gray;
+    z-index: 10;
   }
 
   &_desktop {
@@ -22,22 +27,8 @@
     box-sizing: border-box;
     background: linear-gradient(180deg, $bg 0%, rgba(20, 20, 20, 0.25) 100%);
     color: $white;
+    z-index: 10;
   }
-}
-
-.row {
-  max-width: 940px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-}
-
-.column_month {
-  display: block;
-  width: 60px;
-  line-height: 30px;
-  text-align: center;
-  font-weight: 700;
 }
 
 .header-logo-wrap {
@@ -69,4 +60,6 @@
   }
 }
 
-.header-link_italic { font-style: italic; }
+.header-link_italic {
+  font-style: italic;
+}

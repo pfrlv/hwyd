@@ -13,18 +13,18 @@ export default () => (
     </div>
     <div className='header-container_desktop'>
       <div className='row'>
-        <span className='column_month'>Jan.</span>
-        <span className='column_month'>Feb.</span>
-        <span className='column_month'>Mar.</span>
-        <span className='column_month'>Apr.</span>
-        <span className='column_month'>May</span>
-        <span className='column_month'>Jun.</span>
-        <span className='column_month'>Jul.</span>
-        <span className='column_month'>Aug.</span>
-        <span className='column_month'>Sep.</span>
-        <span className='column_month'>Oct.</span>
-        <span className='column_month'>Nov.</span>
-        <span className='column_month'>Dec.</span>
+        <span className='column-cell column-cell_month'>Jan.</span>
+        <span className='column-cell column-cell_month'>Feb.</span>
+        <span className='column-cell column-cell_month'>Mar.</span>
+        <span className='column-cell column-cell_month'>Apr.</span>
+        <span className='column-cell column-cell_month'>May</span>
+        <span className='column-cell column-cell_month'>Jun.</span>
+        <span className='column-cell column-cell_month'>Jul.</span>
+        <span className='column-cell column-cell_month'>Aug.</span>
+        <span className='column-cell column-cell_month'>Sep.</span>
+        <span className='column-cell column-cell_month'>Oct.</span>
+        <span className='column-cell column-cell_month'>Nov.</span>
+        <span className='column-cell column-cell_month'>Dec.</span>
       </div>
     </div>
   </div>

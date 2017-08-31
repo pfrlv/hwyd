@@ -38,6 +38,39 @@ button {
   background: none;
 }
 
+.row {
+  max-width: 940px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.column {
+  position: relative;
+  display: inline-block;
+}
+
+.column-cell {
+  width: 60px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.column-cell_day {
+    color: #323232;
+    font-size: 28px;
+    line-height: 60px;
+  }
+
+.column-cell_month {
+    font-weight: 700;
+    line-height: 30px;
+  }
+
+.header-wrap {
+}
+
 .header-container_mobile {
     display:block;
     position: relative;
@@ -47,6 +80,7 @@ button {
     white-space: nowrap;
     border-bottom: 1px solid #323232;
     color: #323232;
+    z-index: 10;
   }
 
 .header-container_desktop {
@@ -61,22 +95,8 @@ button {
     box-sizing: border-box;
     background: linear-gradient(180deg, #141414 0%, rgba(20, 20, 20, 0.25) 100%);
     color: #fff;
+    z-index: 10;
   }
-
-.row {
-  max-width: 940px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-}
-
-.column_month {
-  display: block;
-  width: 60px;
-  line-height: 30px;
-  text-align: center;
-  font-weight: 700;
-}
 
 .header-logo-wrap {
   position: relative;
@@ -107,7 +127,9 @@ button {
     text-decoration: none;
   }
 
-.header-link_italic { font-style: italic; }
+.header-link_italic {
+  font-style: italic;
+}
 
 .footer-wrap {
   display:none;
@@ -158,13 +180,13 @@ button {
 .footer-txt:last-of-type { padding-right: 30px; }
 
 .footer-txt_link {
-  padding: 0 30px;
-  will-change: color;
-  transition: color 160ms ease;
-}
+    padding: 0 30px;
+    will-change: color;
+    transition: color 160ms ease;
+  }
 
 .footer-txt_link:hover,
-  .footer-txt_link:active { color: #fff; }
+    .footer-txt_link:active { color: #fff; }
 
 .footer-txt_italic { font-style: italic; }
 
@@ -222,8 +244,57 @@ button {
     background-color: #fff;
   }
 
+.clndr-wrap {
+  overflow: hidden;
+  position: fixed;
+  display: block;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+}
+
+.clndr-container_desktop {
+    overflow: scroll;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+.clndr-track {
+  position: relative;
+  display: flex;
+  max-width: 940px;
+  justify-content: space-between;
+  margin: 0 auto;
+  height: auto;
+  padding:50px 10px 50vh;
+}
+
+.is-today {
+  color: #fff;
+}
+
+.is-goodday {
+  background: #37b94d;
+  color: #141414;
+  border-radius: 50%;
+}
+
+.is-badday {
+  background: #ff3b30;
+  color: #141414;
+  border-radius: 50%;
+}
+
+@media (min-width:991px){.header-wrap{height:100px;}}
+
 @media (min-width:991px){.header-container_mobile{display:none;}}
 
 @media (min-width:991px){.header-container_desktop{display:block;}}
 
 @media (min-width:991px){.footer-wrap{display:block;}}
+
+@media (min-width:991px){.clndr-track{padding:100px 0 50vh;}}

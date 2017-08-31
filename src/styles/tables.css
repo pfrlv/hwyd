@@ -1,0 +1,29 @@
+.row {
+  max-width: 940px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.column {
+  position: relative;
+  display: inline-block;
+}
+
+.column-cell {
+  width: 60px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+
+  &_day {
+    color: $gray;
+    font-size: 28px;
+    line-height: 60px;
+  }
+
+  &_month {
+    font-weight: 700;
+    line-height: 30px;
+  }
+}

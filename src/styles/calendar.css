@@ -22,11 +22,12 @@
 .clndr-track {
   position: relative;
   display: flex;
-  max-width: 940px;
+  width: 940px @(min-width: $tabletLandscapeUp) auto;
+  max-width: @(min-width: $tabletLandscapeUp) 940px;
   justify-content: space-between;
   margin: 0 auto;
   height: auto;
-  padding: 50px 10px 50vh @(min-width: $tabletLandscapeUp) 100px 0 50vh;
+  padding: 100px 25px 50vh @(min-width: $tabletLandscapeUp) 100px 0 50vh;
 }
 
 .is-today {

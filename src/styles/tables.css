@@ -3,6 +3,24 @@
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
+
+  &_mobile {
+    width: 940px;
+    position: relative;
+    margin: 0;
+    padding: 0 0 50px;
+    white-space: nowrap;
+  }
+
+  &_body {
+    padding: 15px 0 0;
+    margin-bottom: -50px;
+    overflow: hidden
+  }
+
+  &_scroll {
+    overflow: scroll;
+  }
 }
 
 .column {
@@ -25,5 +43,6 @@
   &_month {
     font-weight: 700;
     line-height: 30px;
+    color: $white;
   }
 }

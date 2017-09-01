@@ -45,6 +45,24 @@ button {
   justify-content: space-between;
 }
 
+.row_mobile {
+    width: 940px;
+    position: relative;
+    margin: 0;
+    padding: 0 0 50px;
+    white-space: nowrap;
+  }
+
+.row_body {
+    padding: 15px 0 0;
+    margin-bottom: -50px;
+    overflow: hidden
+  }
+
+.row_scroll {
+    overflow: scroll;
+  }
+
 .column {
   position: relative;
   display: inline-block;
@@ -66,6 +84,7 @@ button {
 .column-cell_month {
     font-weight: 700;
     line-height: 30px;
+    color: #fff;
   }
 
 .header-wrap {
@@ -74,12 +93,12 @@ button {
 .header-container_mobile {
     display:block;
     position: relative;
-    margin: 10px 25px;
-    height: 35px;
+    overflow: hidden;
+    padding: 10px 25px;
+    height: 80px;
     line-height: 35px;
     white-space: nowrap;
-    border-bottom: 1px solid #323232;
-    color: #323232;
+    background: linear-gradient(180deg, #141414 0%, rgba(20, 20, 20, 0.25) 100%);
     z-index: 10;
   }
 
@@ -129,6 +148,13 @@ button {
 
 .header-link_italic {
   font-style: italic;
+}
+
+.container_fixed {
+  border-bottom: 1px solid #323232;
+  color: #323232;
+  width: 100%;
+  position: relative;
 }
 
 .footer-wrap {
@@ -266,11 +292,11 @@ button {
 .clndr-track {
   position: relative;
   display: flex;
-  max-width: 940px;
+  width:940px;
   justify-content: space-between;
   margin: 0 auto;
   height: auto;
-  padding:50px 10px 50vh;
+  padding:100px 25px 50vh;
 }
 
 .is-today {
@@ -296,5 +322,9 @@ button {
 @media (min-width:991px){.header-container_desktop{display:block;}}
 
 @media (min-width:991px){.footer-wrap{display:block;}}
+
+@media (min-width:991px){.clndr-track{width:auto;}}
+
+@media (min-width:991px){.clndr-track{max-width:940px;}}
 
 @media (min-width:991px){.clndr-track{padding:100px 0 50vh;}}

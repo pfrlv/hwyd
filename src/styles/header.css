@@ -6,12 +6,12 @@
   &_mobile {
     display: block @(min-width: $tabletLandscapeUp) none;
     position: relative;
-    margin: 10px 25px;
-    height: 35px;
+    overflow: hidden;
+    padding: 10px 25px;
+    height: 80px;
     line-height: 35px;
     white-space: nowrap;
-    border-bottom: 1px solid $gray;
-    color: $gray;
+    background: linear-gradient(180deg, $bg 0%, rgba(20, 20, 20, 0.25) 100%);
     z-index: 10;
   }
 
@@ -62,4 +62,11 @@
 
 .header-link_italic {
   font-style: italic;
+}
+
+.container_fixed {
+  border-bottom: 1px solid $gray;
+  color: $gray;
+  width: 100%;
+  position: relative;
 }

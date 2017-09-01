@@ -13,11 +13,23 @@ export default class extends Component {
     const ystrDD = ystr.getDate()
     const ystrMM = ystr.getMonth()
     const ystrmmDOM = document.querySelector(`[data-month='${ystrMM}']`)
-    const ystrddDOM = mmDOM.querySelector(`[data-day='${ystrDD}']`)
-    ystrddDOM.classList.add('is-goodday')
+    const ystrddDOM = ystrmmDOM.querySelector(`[data-day='${ystrDD}']`)
 
+    ystrddDOM.classList.add('is-goodday')
     ddDOM.classList.add('is-today')
-    ddDOM.scrollIntoView()
+
+    const clndrBox = document.querySelector('.clndr-container_desktop')
+    const monthsBox = document.querySelector('.row_scroll')
+    let scrollSide = 0
+
+    clndrBox.scrollTop = ddDOM.offsetTop
+    monthsBox.scrollLeft = ddDOM.getBoundingClientRect().left
+    clndrBox.scrollLeft = ddDOM.getBoundingClientRect().left
+
+    window.addEventListener('wheel', (ev) => {
+      scrollSide = clndrBox.scrollLeft
+      monthsBox.scrollLeft = scrollSide
+    })
   }
 
   render() {

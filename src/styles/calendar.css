@@ -28,7 +28,7 @@
   justify-content: space-between;
   margin: 0 auto;
   height: auto;
-  padding: 100px 25px 50vh @(min-width: $tabletLandscapeUp) 100px 0 50vh;
+  padding: 75px 25px 0 @(min-width: $tabletLandscapeUp) 75px 0 0;
 }
 
 .is-today {

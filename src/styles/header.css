@@ -1,17 +1,13 @@
-.header-wrap {
-  height: @(min-width: $tabletLandscapeUp) 100px;
-}
-
 .header-container {
   &_mobile {
     display: block @(min-width: $tabletLandscapeUp) none;
     position: relative;
     overflow: hidden;
-    padding: 10px 25px;
+    padding: 10px 0;
     height: 80px;
     line-height: 35px;
     white-space: nowrap;
-    background: linear-gradient(180deg, $bg 0%, rgba(20, 20, 20, 0.25) 100%);
+    background: linear-gradient(180deg, $bg 15%, rgba(20, 20, 20, 0.0) 100%);
     z-index: 10;
   }
 
@@ -22,10 +18,10 @@
     right: 0;
     bottom: 0;
     left: 0;
-    height: 100px;
+    height: 150px;
     padding: 15px 0 0;
     box-sizing: border-box;
-    background: linear-gradient(180deg, $bg 0%, rgba(20, 20, 20, 0.25) 100%);
+    background: linear-gradient(180deg, $bg 15%, rgba(20, 20, 20, 0.0) 100%);
     color: $white;
     z-index: 10;
   }
@@ -67,6 +63,8 @@
 .container_fixed {
   border-bottom: 1px solid $gray;
   color: $gray;
+  padding: 0 25px;
+  box-sizing: border-box;
   width: 100%;
   position: relative;
 }

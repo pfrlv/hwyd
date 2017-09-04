@@ -1,7 +1,7 @@
 import React from 'react'
 import logo from '../assets/Logo.svg'
 
-export default () => (
+export default ({ monthesRowRef }) => (
   <div className='header-wrap'>
     <div className='header-container_mobile'>
       <div className='container_fixed'>
@@ -13,7 +13,7 @@ export default () => (
         </div>
       </div>
       <div className='row_body'>
-        <div className='row_scroll'>
+        <div className='row_scroll' ref={monthesRowRef}>
           <div className='row row_mobile'>
             <span className='column-cell column-cell_month'>Jan.</span>
             <span className='column-cell column-cell_month'>Feb.</span>

@@ -17,19 +17,6 @@ export default class extends Component {
 
     ystrddDOM.classList.add('is-goodday')
     ddDOM.classList.add('is-today')
-
-    const clndrBox = document.querySelector('.clndr-container_desktop')
-    const monthsBox = document.querySelector('.row_scroll')
-    let scrollSide = 0
-
-    clndrBox.scrollTop = ddDOM.offsetTop
-    monthsBox.scrollLeft = ddDOM.getBoundingClientRect().left
-    clndrBox.scrollLeft = ddDOM.getBoundingClientRect().left
-
-    window.addEventListener('wheel', (ev) => {
-      scrollSide = clndrBox.scrollLeft
-      monthsBox.scrollLeft = scrollSide
-    })
   }
 
   render() {
@@ -41,7 +28,7 @@ export default class extends Component {
 
     return (
       <div className='clndr-wrap'>
-        <div className='clndr-container_desktop'>
+        <div className='clndr-container_desktop' onWheel={this.props.handleScroll}>
           <div className='clndr-track'>
             {months}
           </div>

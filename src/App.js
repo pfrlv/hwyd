@@ -5,13 +5,19 @@ import Header from './components/Header'
 import Calendar from './components/Calendar'
 import Footer from './components/Footer'
 import Alert from './components/Alert'
-import HeroMessage from './components/HeroMessage'
+import Hero from './components/Hero'
 
 export default class App extends Component {
   constructor(props) {
     super(props)
 
+    this.state = {
+      isTime: true
+    }
+
     this.handleScroll = this.handleScroll.bind(this)
+    this.handleAnswer = this.handleAnswer.bind(this)
+
 
     this.login = this.login.bind(this)
     this.logout = this.logout.bind(this)
@@ -19,6 +25,12 @@ export default class App extends Component {
 
   handleScroll (ev) {
     this.monthesRowRef.scrollLeft = ev.currentTarget.scrollLeft
+  }
+
+  handleAnswer (ev) {
+    this.setState({
+      isTime: false
+    })
   }
 
   logout() {
@@ -60,8 +72,12 @@ export default class App extends Component {
         <Header monthesRowRef={el => this.monthesRowRef = el} />
         <Calendar handleScroll={this.handleScroll} />
         <Footer />
-        <Alert />
-        <HeroMessage />
+        { !this.state.isTime
+          && <Alert />
+        }
+        { this.state.isTime
+          && <HeroMessage handleAnswer={this.handleAnswer}/>
+        }
       </div>
     )
   }

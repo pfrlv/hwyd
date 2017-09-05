@@ -135,7 +135,7 @@ button {
 
 .header-link {
   position: relative;
-  display: block;
+  display: inline-block;
   padding: 0 10px;
 }
 

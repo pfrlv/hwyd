@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Heebo:400,500');
-@import url('https://fonts.googleapis.com/css?family=Work+Sans:400,500');
+@import url('https://fonts.googleapis.com/css?family=Heebo:300,400,500');
 
 * {
   outline: none;
@@ -12,6 +11,7 @@ html {
   width: 100%;
   background: $bg;
   font-family: 'Heebo', sans-serif;
+  font-weight: 400;
   font-size: 16px;
   cursor: default;
 }

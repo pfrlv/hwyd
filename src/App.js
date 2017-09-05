@@ -4,14 +4,11 @@ import Header from './components/Header'
 import Calendar from './components/Calendar'
 import Footer from './components/Footer'
 import Alert from './components/Alert'
+import HeroMessage from './components/HeroMessage'
 
 export default class App extends Component {
   constructor(props) {
     super(props)
-
-    this.state = {
-      leftScrollPosition: 0
-    }
 
     this.handleScroll = this.handleScroll.bind(this)
   }
@@ -27,6 +24,7 @@ export default class App extends Component {
         <Calendar handleScroll={this.handleScroll} />
         <Footer />
         <Alert />
+        <HeroMessage />
       </div>
     )
   }

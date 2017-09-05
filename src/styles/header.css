@@ -18,8 +18,8 @@
     right: 0;
     bottom: 0;
     left: 0;
-    height: 150px;
-    padding: 15px 0 0;
+    height: 100px;
+    padding: 20px 0 0;
     box-sizing: border-box;
     background: linear-gradient(180deg, $bg 15%, rgba(20, 20, 20, 0.0) 100%);
     color: $white;

@@ -30,14 +30,15 @@
 
 .column-cell {
   width: 60px;
+  height: 60px;
   text-align: center;
   display: flex;
   flex-direction: column;
 
   &_day {
     color: $gray;
-    font-size: 28px;
-    line-height: 60px;
+    font-size: 30px;
+    line-height: 65px;
   }
 
   &_month {

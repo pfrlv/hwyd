@@ -12,6 +12,7 @@ export default class App extends Component {
     super(props)
 
     this.state = {
+      user: null,
       isTime: true
     }
 
@@ -41,20 +42,74 @@ export default class App extends Component {
         this.setState({
           user
         });
+
+        firebase.database().ref('users/' + user.uid).once('value', snap => {
+          const exists = (snap.val() !== null)
+          if (exists) {
+            this.getUserData()
+          } else {
+            this.setNewUser()
+          }
+        })
       })
+  }
+
+  addGoodDay() {
+    var newDay = {
+      0: {
+        day: '31',
+        month: '5'
+      }
+    }
+
+    const updates = {}
+    updates['/gooddays/'] = newDay
+    firebase.database().ref('users/' + this.state.user.uid).update(updates)
+  }
+
+  addBadDay() {
+    var newDay = {
+      0: {
+        day: '1',
+        month: '9'
+      }
+    }
+
+    const updates = {}
+    updates['/baddays/'] = newDay
+    firebase.database().ref('users/' + this.state.user.uid).update(updates)
+  }
+
+  getUserData() {
+    firebase.database().ref('users/').child(this.state.user.uid).on('value', snap => {
+      console.log(snap.val())
+    })
+  }
+
+  setNewUser() {
+    firebase.database().ref('users/' + this.state.user.uid).set({
+      username: this.state.user.displayName,
+      email: this.state.user.email
+    })
   }
 
   componentDidMount() {
     const isTime = ((new Date()).getHours() >= 20)
     this.setState({ isTime: isTime })
 
-    auth.onAuthStateChanged(user => user && this.setState({ user }))
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        this.setState({ user })
+        this.getUserData()
+      }
+    })
   }
 
-  /* это кнопочка для тестирования
-  { this.state.user ?
-    <button onClick={this.logout} style={{ position: 'absolute', display: 'block', padding: '0 10px', fontSize: '30px', color: '#fff', zIndex: '100' }} >Logout</button> :
-    <button onClick={this.login} style={{ position: 'absolute', display: 'block', padding: '0 10px', fontSize: '30px', color: '#fff', zIndex: '100' }}>Log in</button> }
+  /*
+  { this.state.isTime
+    ? <Hero handleAnswer={this.handleAnswer} />
+    : <Alert />
+  }
   */
 
   render() {
@@ -62,11 +117,7 @@ export default class App extends Component {
       <div>
         <Header monthesRowRef={el => this.monthesRowRef = el} />
         <Calendar handleScroll={this.handleScroll} />
-        <Footer />
-        { this.state.isTime
-          ? <Hero handleAnswer={this.handleAnswer} />
-          : <Alert />
-        }
+        <Footer user={this.state.user} login={this.login} logout={this.logout} />
       </div>
     )
   }

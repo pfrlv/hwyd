@@ -48,6 +48,7 @@
     padding: 0 30px;
     will-change: opacity;
     transition: opacity 160ms ease;
+    cursor: pointer;
 
     &:hover,
     &:active { opacity: 0.5; }

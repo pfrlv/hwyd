@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Heebo:300,400,500');
+@import url('https://fonts.googleapis.com/css?family=Heebo:300,400,900');
 
 * {
   outline: none;
@@ -84,7 +84,7 @@ button {
   }
 
 .column-cell_month {
-    font-weight: 700;
+    font-weight: 900;
     line-height: 30px;
     color: #fff;
   }
@@ -199,7 +199,7 @@ button {
   padding: 0 15px;
   font-size: 16px;
   line-height: 45px;
-  color: #323232;
+  color: #fff;
 }
 
 .footer-txt:first-child { padding-left: 0; }
@@ -208,12 +208,12 @@ button {
 
 .footer-txt_link {
     padding: 0 30px;
-    will-change: color;
-    transition: color 160ms ease;
+    will-change: opacity;
+    transition: opacity 160ms ease;
   }
 
 .footer-txt_link:hover,
-    .footer-txt_link:active { color: #fff; }
+    .footer-txt_link:active { opacity: 0.5; }
 
 .footer-txt_italic { font-style: italic; }
 
@@ -327,7 +327,14 @@ button {
   justify-content: center;
   align-items: center;
   color: #fff;
+  opacity: 0;
+  will-change: opacity;
+  transition: opacity 400ms ease;
 }
+
+.hero_is-active {
+    opacity: 1;
+  }
 
 .hero__body {
     position: relative;
@@ -348,9 +355,7 @@ button {
       z-index: -1;
     }
 
-.hero__text {
-    margin-bottom: 30px;
-  }
+.hero__text { margin-bottom: 30px; }
 
 .hero__buttons { line-height: 0; }
 
@@ -372,4 +377,4 @@ button {
 
 @media (min-width:991px){.clndr-track{max-width:940px;}}
 
-@media (min-width:991px){.clndr-track{padding:60px 0 0;}}
+@media (min-width:991px){.clndr-track{padding:60px 0 35px;}}

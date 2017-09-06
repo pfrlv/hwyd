@@ -16,8 +16,6 @@ export default class App extends Component {
     }
 
     this.handleScroll = this.handleScroll.bind(this)
-    this.handleAnswer = this.handleAnswer.bind(this)
-
 
     this.login = this.login.bind(this)
     this.logout = this.logout.bind(this)
@@ -25,12 +23,6 @@ export default class App extends Component {
 
   handleScroll (ev) {
     this.monthesRowRef.scrollLeft = ev.currentTarget.scrollLeft
-  }
-
-  handleAnswer (ev) {
-    this.setState({
-      isTime: false
-    })
   }
 
   logout() {
@@ -53,11 +45,10 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        this.setState({ user });
-      }
-    })
+    const isTime = ((new Date()).getHours() >= 20)
+    this.setState({ isTime: isTime })
+
+    auth.onAuthStateChanged(user => user && this.setState({ user }))
   }
 
   /* это кнопочка для тестирования
@@ -72,11 +63,9 @@ export default class App extends Component {
         <Header monthesRowRef={el => this.monthesRowRef = el} />
         <Calendar handleScroll={this.handleScroll} />
         <Footer />
-        { !this.state.isTime
-          && <Alert />
-        }
         { this.state.isTime
-          && <HeroMessage handleAnswer={this.handleAnswer}/>
+          ? <Hero handleAnswer={this.handleAnswer} />
+          : <Alert />
         }
       </div>
     )

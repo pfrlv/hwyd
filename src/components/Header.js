@@ -3,12 +3,12 @@ import classes from 'classnames'
 
 import logo from '../assets/Logo.svg'
 
-export default ({ toggleModalWin, modalState, monthesRowRef }) => {
+export default ({ modalRef, monthesRowRef }) => {
   return (
     <div className='header-wrap'>
       <div className={classes({
           'header-container_mobile': true,
-          is_modal_open: modalState
+          is_modal_open: modalRef.state
         })}>
         <div className='container_fixed'>
           <div className='header-logo-wrap'>
@@ -18,8 +18,8 @@ export default ({ toggleModalWin, modalState, monthesRowRef }) => {
             <span className={classes({
                 'header-link': true,
                 'header-link_italic': true,
-                'close_icon': modalState
-            })} onClick={toggleModalWin}></span>
+                'close_icon': modalRef.state
+            })} onClick={modalRef.toggle}></span>
           </div>
         </div>
         <div className='row_body'>

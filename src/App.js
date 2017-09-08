@@ -127,12 +127,23 @@ export default class App extends Component {
   */
 
   render() {
+    const authRef = {
+      user: this.state.user,
+      login: this.login,
+      logout: this.logout
+    }
+
+    const modalRef = {
+      toggle: this.toggleModalWin,
+      state: this.state.isModalOpen
+    }
+
     return (
       <div>
-        <Header toggleModalWin={this.toggleModalWin} modalState={this.state.isModalOpen} monthesRowRef={el => this.monthesRowRef = el} />
+        <Header modalRef={modalRef} monthesRowRef={el => this.monthesRowRef = el} />
         <Calendar handleScroll={this.handleScroll} />
-        <Info modalState={this.state.isModalOpen} user={this.state.user} login={this.login} logout={this.logout} />
-        <Footer toggleModalWin={this.toggleModalWin} user={this.state.user} login={this.login} logout={this.logout} />
+        <Info modalRef={modalRef} authRef={authRef} />
+        <Footer modalRef={modalRef} authRef={authRef} />
       </div>
     )
   }

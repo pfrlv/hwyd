@@ -2,7 +2,7 @@ import React from 'react'
 
 import logo from '../assets/Logo.svg'
 
-export default ({ toggleModalWin, user, login, logout }) => {
+export default ({ modalRef, authRef }) => {
   return (
     <div className='footer-wrap'>
       <div className='footer-container'>
@@ -14,8 +14,8 @@ export default ({ toggleModalWin, user, login, logout }) => {
         <div className='footer-bottom'>
           <span className='footer-txt'>2017</span>
           <span className='footer-txt'>hwyd by Cartel</span>
-          { (user !== null) ? <span className='footer-txt footer-txt_link' onClick={logout}>Want to switch, {user.displayName}?</span> : <span className='footer-txt footer-txt_link' onClick={login}>Enter with Facebook</span> }
-          <a className='footer-txt footer-txt_link footer-txt_italic' onClick={toggleModalWin} >i</a>
+          { (authRef.user !== null) ? <span className='footer-txt footer-txt_link' onClick={authRef.logout}>Want to switch, {authRef.user.displayName}?</span> : <span className='footer-txt footer-txt_link' onClick={authRef.login}>Enter with Facebook</span> }
+          <a className='footer-txt footer-txt_link footer-txt_italic' onClick={modalRef.toggle} >i</a>
         </div>
       </div>
     </div>

@@ -2,7 +2,7 @@ import React from 'react'
 
 import logo from '../assets/Logo.svg'
 
-export default ({ user, login, logout }) => {
+export default ({ toggleModalWin, user, login, logout }) => {
   return (
     <div className='footer-wrap'>
       <div className='footer-container'>
@@ -15,7 +15,7 @@ export default ({ user, login, logout }) => {
           <span className='footer-txt'>2017</span>
           <span className='footer-txt'>hwyd by Cartel</span>
           { (user !== null) ? <span className='footer-txt footer-txt_link' onClick={logout}>Want to switch, {user.displayName}?</span> : <span className='footer-txt footer-txt_link' onClick={login}>Enter with Facebook</span> }
-          <a className='footer-txt footer-txt_link footer-txt_italic' target='popup' href='http://github.com/pfrlv/hwyd'>i</a>
+          <a className='footer-txt footer-txt_link footer-txt_italic' onClick={toggleModalWin} >i</a>
         </div>
       </div>
     </div>

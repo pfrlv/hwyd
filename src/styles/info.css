@@ -1,0 +1,88 @@
+.info-win {
+  position: fixed;
+  top: 46px @(min-width: $tabletLandscapeUp) 0px;
+  display: none;
+  z-index: 10;
+  height: calc(100% - 46px) @(min-width: $tabletLandscapeUp) 100%;
+  width: 100% @(min-width: $tabletLandscapeUp) 940px;
+  right: @(min-width: $tabletLandscapeUp) 0;
+  left: @(min-width: $tabletLandscapeUp) 0;
+  margin-right: @(min-width: $tabletLandscapeUp) auto;
+  margin-left: @(min-width: $tabletLandscapeUp) auto;
+}
+
+.info-container {
+  background: $darkGray;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.info-text {
+  color: $lightGray;
+  white-space: normal;
+  line-height: 20px;
+  padding: 10px 45px 0 25px @(min-width: $tabletLandscapeUp) 0;
+  max-width: @(min-width: $tabletLandscapeUp) 390px;
+  margin: 0 auto;
+  flex-grow: 0 @(min-width: $tabletLandscapeUp) 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  line-height: 25px;
+}
+
+.info-auth {
+  position: relative;
+  display: @(min-width: $tabletLandscapeUp) none;
+  flex-grow: 1;
+  margin-top: 60px;
+}
+
+.info-logo {
+  &_wrap {
+    display: none @(min-width: $tabletLandscapeUp) block;
+    margin-bottom: 25px;
+  }
+
+  &_img {
+    width: 150px;
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+.info-footer {
+  margin-bottom: 20px;
+  display: @(min-width: $tabletLandscapeUp) none;
+
+  &_text {
+    display: inline-block;
+    padding: 0 15px;
+    font-size: 16px;
+    line-height: 45px;
+    color: $lightGray;
+
+    &:last-of-type { padding-right: 30px; }
+  }
+}
+
+button[type=log] {
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  width: 220px;
+  color: $white;
+  font-size: inherit;
+  line-height: 50px;
+  border: 1px solid $lightGray;
+}
+
+.is_open {
+  display: block;
+}
+
+.is_open_flex {
+  display: flex;
+  flex-direction: column;
+}

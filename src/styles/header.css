@@ -46,8 +46,12 @@
 
 .header-link {
   position: relative;
-  display: inline-block;
+  display: block;
   padding: 0 10px;
+  height: 35px;
+  background-image: url("data:image/svg+xml,%3Csvg width='4' height='14' viewBox='0 0 4 14' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Ctitle%3Ei%3C/title%3E%3Cdesc%3ECreated using Figma%3C/desc%3E%3Cg id='Canvas' transform='translate%28-4557 168%29'%3E%3Cg id='i'%3E%3Cuse xlink:href='%23path0_fill' transform='matrix%281 -2.77556e-17 2.77556e-17 1 4544 -176%29' fill='%23FFFFFF'/%3E%3C/g%3E%3C/g%3E%3Cdefs%3E%3Cpath id='path0_fill' d='M 13.7812 12.5234L 15.5859 12.3516L 16.2188 12.9609L 15.2109 20.1797L 16.3125 20.3359L 16.1797 21L 14.3828 21.1719L 13.75 20.5625L 14.75 13.3438L 13.6484 13.1875L 13.7812 12.5234ZM 15.0547 9.98438C 15.0547 9.71354 15.1068 9.47656 15.2109 9.27344C 15.3203 9.07031 15.4505 8.96875 15.6016 8.96875C 15.8672 8.96875 16.1016 9.02344 16.3047 9.13281C 16.513 9.23698 16.6172 9.36458 16.6172 9.51562C 16.6172 9.80208 16.5625 10.0443 16.4531 10.2422C 16.3438 10.4349 16.2161 10.5312 16.0703 10.5312C 15.7839 10.5312 15.5417 10.4792 15.3438 10.375C 15.151 10.2656 15.0547 10.1354 15.0547 9.98438Z'/%3E%3C/defs%3E%3C/svg%3E%0A");
+  background-repeat: no-repeat;
+  background-position: 50%;
 
   &:link,
   &:active {
@@ -56,15 +60,23 @@
   }
 }
 
+.close_icon {
+  background-image: url("data:image/svg+xml,%3Csvg width='17' height='17' viewBox='0 0 17 17' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Cdesc%3ECreated using Figma%3C/desc%3E%3Cg transform='translate%28-4558 -547%29'%3E%3Cg%3E%3Cuse xlink:href='%23path0_stroke' transform='translate%284559 548%29' fill='%23FFFFFF'/%3E%3C/g%3E%3C/g%3E%3Cdefs%3E%3Cpath id='path0_stroke' d='M -0.353553 0.353553L 7.14645 7.85355L 7.85355 7.14645L 0.353553 -0.353553L -0.353553 0.353553ZM 7.14645 7.85355L 14.6464 15.3536L 15.3536 14.6464L 7.85355 7.14645L 7.14645 7.85355ZM 14.6464 -0.353553L 7.14645 7.14645L 7.85355 7.85355L 15.3536 0.353553L 14.6464 -0.353553ZM 7.14645 7.14645L -0.353553 14.6464L 0.353553 15.3536L 7.85355 7.85355L 7.14645 7.14645Z'/%3E%3C/defs%3E%3C/svg%3E%0A");
+}
+
 .header-link_italic {
   font-style: italic;
 }
 
 .container_fixed {
   border-bottom: 1px solid $gray;
-  color: $gray;
+  color: $white;
   padding: 0 25px;
   box-sizing: border-box;
   width: 100%;
   position: relative;
+}
+
+.is_modal_open {
+  overflow: visible;
 }

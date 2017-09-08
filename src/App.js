@@ -6,6 +6,7 @@ import Calendar from './components/Calendar'
 import Footer from './components/Footer'
 import Alert from './components/Alert'
 import Hero from './components/Hero'
+import Info from './components/Info'
 
 export default class App extends Component {
   constructor(props) {
@@ -13,10 +14,13 @@ export default class App extends Component {
 
     this.state = {
       user: null,
-      isTime: true
+      userDB: null,
+      isTime: true,
+      isModalOpen: false
     }
 
     this.handleScroll = this.handleScroll.bind(this)
+    this.toggleModalWin = this.toggleModalWin.bind(this)
 
     this.login = this.login.bind(this)
     this.logout = this.logout.bind(this)
@@ -82,7 +86,10 @@ export default class App extends Component {
 
   getUserData() {
     firebase.database().ref('users/').child(this.state.user.uid).on('value', snap => {
-      console.log(snap.val())
+      this.setState({
+        userDB: snap.val()
+      })
+      console.log(this.state)
     })
   }
 
@@ -105,6 +112,13 @@ export default class App extends Component {
     })
   }
 
+  toggleModalWin() {
+    const currentState = this.state.isModalOpen
+    this.setState({
+      isModalOpen: !currentState
+    })
+  }
+
   /*
   { this.state.isTime
     ? <Hero handleAnswer={this.handleAnswer} />
@@ -115,9 +129,10 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <Header monthesRowRef={el => this.monthesRowRef = el} />
+        <Header toggleModalWin={this.toggleModalWin} modalState={this.state.isModalOpen} monthesRowRef={el => this.monthesRowRef = el} />
         <Calendar handleScroll={this.handleScroll} />
-        <Footer user={this.state.user} login={this.login} logout={this.logout} />
+        <Info modalState={this.state.isModalOpen} user={this.state.user} login={this.login} logout={this.logout} />
+        <Footer toggleModalWin={this.toggleModalWin} user={this.state.user} login={this.login} logout={this.logout} />
       </div>
     )
   }

@@ -3,7 +3,7 @@
   top: 46px @(min-width: $tabletLandscapeUp) 0px;
   display: none;
   z-index: 10;
-  height: calc(100vh - 46px) @(min-width: $tabletLandscapeUp) 100%;
+  height: calc(100% - 46px) @(min-width: $tabletLandscapeUp) 100%;
   width: 100% @(min-width: $tabletLandscapeUp) 940px;
   right: @(min-width: $tabletLandscapeUp) 0;
   left: @(min-width: $tabletLandscapeUp) 0;

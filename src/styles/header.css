@@ -79,4 +79,6 @@
 
 .is_modal_open {
   overflow: visible;
+  position: fixed;
+  width: 100vw;
 }

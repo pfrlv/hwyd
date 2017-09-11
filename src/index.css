@@ -168,6 +168,8 @@ button {
 
 .is_modal_open {
   overflow: visible;
+  position: fixed;
+  width: 100vw;
 }
 
 .footer-wrap {
@@ -385,7 +387,7 @@ button {
   top:46px;
   display: none;
   z-index: 10;
-  height:calc(100vh - 46px);
+  height:calc(100% - 46px);
   width:100%;
   overflow: hidden;
 }

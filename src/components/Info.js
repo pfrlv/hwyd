@@ -13,6 +13,7 @@ export default ({ modalRef, authRef }) => {
           'info-container': true,
           'is_open_flex': modalRef.state
         })}>
+        <div className='info-track'>
           <div className='info-text'>
             <div className='info-logo_wrap'>
               <img className='info-logo_img' alt='hwyd.' src={logo} />
@@ -25,6 +26,7 @@ export default ({ modalRef, authRef }) => {
           <div className='info-footer'>
             <span className='info-footer_text'>2017</span>
             <span className='info-footer_text'>hwyd by Cartel</span>
+          </div>
           </div>
         </div>
     </div>

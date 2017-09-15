@@ -4,8 +4,9 @@ import firebase, { auth, provider } from './helpers/firebase.js'
 import Header from './components/Header'
 import Calendar from './components/Calendar'
 import Footer from './components/Footer'
-import Alert from './components/Alert'
-import Hero from './components/Hero'
+import About from './components/About'
+// import Alert from './components/Alert'
+// import Hero from './components/Hero'
 
 export default class App extends Component {
   constructor(props) {
@@ -31,17 +32,16 @@ export default class App extends Component {
       .then(() => {
         this.setState({
           user: null
-        });
+        })
       })
   }
 
   login() {
     auth.signInWithPopup(provider)
       .then((result) => {
-        const user = result.user;
-        this.setState({
-          user
-        });
+        const user = result.user
+
+        this.setState({ user })
 
         firebase.database().ref('users/' + user.uid).once('value', snap => {
           const exists = (snap.val() !== null)
@@ -118,6 +118,7 @@ export default class App extends Component {
         <Header monthesRowRef={el => this.monthesRowRef = el} />
         <Calendar handleScroll={this.handleScroll} />
         <Footer user={this.state.user} login={this.login} logout={this.logout} />
+        <About />
       </div>
     )
   }

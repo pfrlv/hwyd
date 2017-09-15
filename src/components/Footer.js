@@ -14,7 +14,10 @@ export default ({ user, login, logout }) => {
         <div className='footer-bottom'>
           <span className='footer-txt'>2017</span>
           <span className='footer-txt'>hwyd by Cartel</span>
-          { (user !== null) ? <span className='footer-txt footer-txt_link' onClick={logout}>Want to switch, {user.displayName}?</span> : <span className='footer-txt footer-txt_link' onClick={login}>Enter with Facebook</span> }
+          { (user !== null)
+            ? <span className='footer-txt footer-txt_link' onClick={logout}>Logout</span>
+            : <span className='footer-txt footer-txt_link' onClick={login}>Enter with Facebook</span>
+          }
           <a className='footer-txt footer-txt_link footer-txt_italic' target='popup' href='http://github.com/pfrlv/hwyd'>i</a>
         </div>
       </div>

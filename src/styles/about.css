@@ -1,0 +1,53 @@
+.about {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: $bg;
+  color: #888;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9;
+
+  &__body {
+    max-width: 390px;
+  }
+
+  &__logo {
+    display: block;
+    width: 150px;
+    margin: 0 auto 40px;
+  }
+
+  &__text {
+    font-size: 16px;
+    line-height: 25px;
+  }
+
+  &__close {
+    position: absolute;
+    bottom: 15px;
+    right: 0;
+    left: 0;
+    margin: auto;
+    z-index: 10;
+    background-color: transparent;
+    display: block;
+    width: 40px;
+    height: 40px;
+    color: $white;
+    transition: background-color 160ms ease;
+    border-radius: 40px;
+
+    &-icon {
+      display: block;
+      margin: auto;
+    }
+  }
+
+  &__close:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+}

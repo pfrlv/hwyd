@@ -4,6 +4,7 @@ import firebase, { auth, provider } from './helpers/firebase.js'
 import Header from './components/Header'
 import Calendar from './components/Calendar'
 import Footer from './components/Footer'
+
 import About from './components/About'
 // import Alert from './components/Alert'
 // import Hero from './components/Hero'
@@ -14,10 +15,13 @@ export default class App extends Component {
 
     this.state = {
       user: null,
-      isTime: true
+      userDB: null,
+      isTime: true,
+      isModalOpen: false
     }
 
     this.handleScroll = this.handleScroll.bind(this)
+    this.toggleModalWin = this.toggleModalWin.bind(this)
 
     this.login = this.login.bind(this)
     this.logout = this.logout.bind(this)
@@ -82,7 +86,10 @@ export default class App extends Component {
 
   getUserData() {
     firebase.database().ref('users/').child(this.state.user.uid).on('value', snap => {
-      console.log(snap.val())
+      this.setState({
+        userDB: snap.val()
+      })
+      console.log(this.state)
     })
   }
 
@@ -105,6 +112,13 @@ export default class App extends Component {
     })
   }
 
+  toggleModalWin() {
+    const currentState = this.state.isModalOpen
+    this.setState({
+      isModalOpen: !currentState
+    })
+  }
+
   /*
   { this.state.isTime
     ? <Hero handleAnswer={this.handleAnswer} />
@@ -113,9 +127,20 @@ export default class App extends Component {
   */
 
   render() {
+    const authRef = {
+      user: this.state.user,
+      login: this.login,
+      logout: this.logout
+    }
+
+    const modalRef = {
+      toggle: this.toggleModalWin,
+      state: this.state.isModalOpen
+    }
+
     return (
       <div>
-        <Header monthesRowRef={el => this.monthesRowRef = el} />
+        <Header modalRef={modalRef} monthesRowRef={el => this.monthesRowRef = el} />
         <Calendar handleScroll={this.handleScroll} />
         <Footer user={this.state.user} login={this.login} logout={this.logout} />
         <About />

@@ -1,34 +1,27 @@
 .clndr-wrap {
-  overflow: hidden;
   position: fixed;
   display: block;
   top: 0;
-  height: 100vh;
-  width: 100vw;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
   font-weight: 300;
 }
 
 .clndr-container {
-  &_desktop {
-    overflow: scroll;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
+  overflow: scroll;
+  width: 100vw;
+  height: 100%;
 }
 
 .clndr-track {
-  position: relative;
   display: flex;
   width: 940px @(min-width: $tabletLandscapeUp) auto;
   max-width: @(min-width: $tabletLandscapeUp) 940px;
   justify-content: space-between;
   margin: 0 auto;
-  height: auto;
-  padding: 65px 25px 0 @(min-width: $tabletLandscapeUp) 60px 0 35px;
+  padding: 90px 10px 0 @(min-width: $tabletLandscapeUp) 60px 0 35px;
 }
 
 .is-today {

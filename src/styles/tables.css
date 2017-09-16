@@ -8,13 +8,13 @@
     width: 940px;
     position: relative;
     margin: 0;
-    padding: 0 25px 50px;
+    padding: 0 10px 100px;
     white-space: nowrap;
   }
 
   &_body {
-    padding: 15px 0 0;
-    margin-bottom: -50px;
+    padding: 10px 0 0;
+    margin-bottom: -100px;
     overflow: hidden
   }
 
@@ -30,7 +30,6 @@
 
 .column-cell {
   width: 60px;
-  height: 60px;
   text-align: center;
   display: flex;
   flex-direction: column;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+
 import Logo from './../assets/Logo.svg'
 import Close from './../assets/Close.svg'
 

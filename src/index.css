@@ -9,7 +9,7 @@ html {
   padding: 0;
   height: 100%;
   width: 100%;
-  background: #141414;
+  background: #111;
   font-family: 'Heebo', sans-serif;
   font-weight: 400;
   font-size: 16px;
@@ -52,13 +52,13 @@ button {
     width: 940px;
     position: relative;
     margin: 0;
-    padding: 0 25px 50px;
+    padding: 0 10px 100px;
     white-space: nowrap;
   }
 
 .row_body {
-    padding: 15px 0 0;
-    margin-bottom: -50px;
+    padding: 10px 0 0;
+    margin-bottom: -100px;
     overflow: hidden
   }
 
@@ -73,7 +73,6 @@ button {
 
 .column-cell {
   width: 60px;
-  height: 60px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -95,11 +94,10 @@ button {
     display:block;
     position: relative;
     overflow: hidden;
-    padding: 10px 0;
-    height: 80px;
-    line-height: 35px;
+    line-height: 0;
+    padding-bottom: 25px;
     white-space: nowrap;
-    background: linear-gradient(180deg, #141414 15%, rgba(20, 20, 20, 0.0) 100%);
+    background: linear-gradient(180deg, #111 40%, rgba(20, 20, 20, 0.0) 100%);
     z-index: 10;
   }
 
@@ -113,7 +111,7 @@ button {
     height: 100px;
     padding: 20px 0 0;
     box-sizing: border-box;
-    background: linear-gradient(180deg, #141414 15%, rgba(20, 20, 20, 0.0) 100%);
+    background: linear-gradient(180deg, #111 15%, rgba(20, 20, 20, 0.0) 100%);
     color: #fff;
     z-index: 10;
   }
@@ -162,7 +160,7 @@ button {
 .container_fixed {
   border-bottom: 1px solid #323232;
   color: #fff;
-  padding: 0 25px;
+  padding: 15px 25px;
   box-sizing: border-box;
   width: 100%;
   position: relative;
@@ -186,6 +184,7 @@ button {
   transform: translateX(-70px) rotate(-90deg);
   transform-origin: right top;
   z-index: 10;
+  user-select: none; 
 }
 
 .footer-container {
@@ -290,33 +289,28 @@ button {
   }
 
 .clndr-wrap {
-  overflow: hidden;
   position: fixed;
   display: block;
   top: 0;
-  height: 100vh;
-  width: 100vw;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
   font-weight: 300;
 }
 
-.clndr-container_desktop {
-    overflow: scroll;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
+.clndr-container {
+  overflow: scroll;
+  width: 100vw;
+  height: 100%;
+}
 
 .clndr-track {
-  position: relative;
   display: flex;
   width:940px;
   justify-content: space-between;
   margin: 0 auto;
-  height: auto;
-  padding:65px 25px 0;
+  padding:90px 10px 0;
 }
 
 .is-today {
@@ -325,13 +319,13 @@ button {
 
 .is-goodday {
   background: #37b94d;
-  color: #141414;
+  color: #111;
   border-radius: 50%;
 }
 
 .is-badday {
   background: #ff3b30;
-  color: #141414;
+  color: #111;
   border-radius: 50%;
 }
 
@@ -368,7 +362,7 @@ button {
       position: absolute;
       width: 100%;
       height: 100%;
-      background-color: #141414;
+      background-color: #111;
       filter: blur(50px);
       z-index: -1;
     }
@@ -385,61 +379,6 @@ button {
     display: inline-block;
   }
 
-<<<<<<< HEAD
-.about {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: #141414;
-  color: #888;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9;
-}
-
-.about__body {
-    max-width: 390px;
-  }
-
-.about__logo {
-    display: block;
-    width: 150px;
-    margin: 0 auto 40px;
-  }
-
-.about__text {
-    font-size: 16px;
-    line-height: 25px;
-  }
-
-.about__close {
-    position: absolute;
-    bottom: 15px;
-    right: 0;
-    left: 0;
-    margin: auto;
-    z-index: 10;
-    background-color: transparent;
-    display: block;
-    width: 40px;
-    height: 40px;
-    color: #fff;
-    transition: background-color 160ms ease;
-    border-radius: 40px;
-  }
-
-.about__close-icon {
-      display: block;
-      margin: auto;
-    }
-
-.about__close:hover {
-    background-color: rgba(255, 255, 255, 0.05);
-  }
-=======
 .info-win {
   position: fixed;
   top:46px;
@@ -524,7 +463,6 @@ button[type=log] {
   display: flex;
   flex-direction: column;
 }
->>>>>>> 7076b9f4ad72117f39c6dd484797d7331a2b2a31
 
 @media (min-width:991px){.header-container_mobile{display:none;}}
 

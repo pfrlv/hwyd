@@ -5,9 +5,9 @@ import Header from './components/Header'
 import Calendar from './components/Calendar'
 import Footer from './components/Footer'
 
-import About from './components/About'
 // import Alert from './components/Alert'
 // import Hero from './components/Hero'
+import Info from './components/Info'
 
 export default class App extends Component {
   constructor(props) {
@@ -28,7 +28,7 @@ export default class App extends Component {
   }
 
   handleScroll (ev) {
-    this.monthesRowRef.scrollLeft = ev.currentTarget.scrollLeft
+    this.monthesRowRef.scrollLeft = this.calendarRef.scrollLeft = ev.currentTarget.scrollLeft
   }
 
   logout() {
@@ -140,10 +140,10 @@ export default class App extends Component {
 
     return (
       <div>
-        <Header modalRef={modalRef} monthesRowRef={el => this.monthesRowRef = el} />
-        <Calendar handleScroll={this.handleScroll} />
-        <Footer user={this.state.user} login={this.login} logout={this.logout} />
-        <About />
+        <Header handleScroll={this.handleScroll} modalRef={modalRef} monthesRowRef={el => this.monthesRowRef = el} />
+        <Calendar calendarRef={el => this.calendarRef = el} handleScroll={this.handleScroll} />
+        <Info modalRef={modalRef} authRef={authRef} />
+        <Footer modalRef={modalRef} authRef={authRef} />
       </div>
     )
   }

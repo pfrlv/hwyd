@@ -3,7 +3,7 @@ import classes from 'classnames'
 
 import logo from '../assets/Logo.svg'
 
-export default ({ modalRef, monthesRowRef }) => {
+export default ({ handleScroll, modalRef, monthesRowRef }) => {
   return (
     <div className='header-wrap'>
       <div className={classes({
@@ -14,16 +14,9 @@ export default ({ modalRef, monthesRowRef }) => {
           <div className='header-logo-wrap'>
             <img className='header-logo-img' alt='hwyd.' src={logo} />
           </div>
-          <div className='header-info'>
-            <span className={classes({
-                'header-link': true,
-                'header-link_italic': true,
-                'close_icon': modalRef.state
-            })} onClick={modalRef.toggle}></span>
-          </div>
         </div>
         <div className='row_body'>
-          <div className='row_scroll' ref={monthesRowRef}>
+          <div className='row_scroll' ref={monthesRowRef} onTouchMove={handleScroll} onWheel={handleScroll}>
             <div className='row row_mobile'>
               <span className='column-cell column-cell_month'>Jan.</span>
               <span className='column-cell column-cell_month'>Feb.</span>

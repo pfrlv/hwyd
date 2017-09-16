@@ -21,7 +21,7 @@ export default class extends Component {
 
     return (
       <div className='clndr-wrap'>
-        <div className='clndr-container_desktop' onTouchMove={this.props.handleScroll} onWheel={this.props.handleScroll}>
+        <div className='clndr-container' ref={this.props.calendarRef} onTouchMove={this.props.handleScroll} onWheel={this.props.handleScroll}>
           <div className='clndr-track'>
             {months}
           </div>

@@ -10,7 +10,7 @@
   transform: translateX(-70px) rotate(-90deg);
   transform-origin: right top;
   z-index: 10;
-  user-select: none; 
+  user-select: none;
 }
 
 .footer-container {
@@ -32,7 +32,16 @@
   padding: 0;
 }
 
-.logo-img { display: block; }
+.logo-img {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.current-date {
+  display: inline-block;
+  padding: 0 15px;
+  color: white;
+}
 
 .footer-bottom { order: 2; }
 

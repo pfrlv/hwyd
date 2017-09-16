@@ -1,4 +1,5 @@
 import React from 'react'
+import current from '../helpers/getToday'
 
 import logo from '../assets/Logo.svg'
 
@@ -9,6 +10,9 @@ export default ({ modalRef, authRef }) => {
         <div className='footer-content'>
           <div className='logo-wrap'>
             <img className='logo-img' alt='hwyd.' src={logo} />
+          </div>
+          <div className='current-date'>
+            <span>{current.dd} {current.month} {current.yy}</span>
           </div>
         </div>
         <div className='footer-bottom'>

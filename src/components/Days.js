@@ -1,13 +1,6 @@
 import React from 'react'
 import classes from 'classnames'
-
-function getToday() {
-  const today = new Date()
-  const dd = today.getDate()
-  const mm = today.getMonth()
-
-  return { dd: dd, mm: mm }
-}
+import current from '../helpers/getToday'
 
 function getDaysInMonth (month) {
   var date = new Date((new Date()).getFullYear(), month, 1)
@@ -23,10 +16,9 @@ function getDaysInMonth (month) {
 
 export default ({ month }) => {
   const days = []
-  const current = getToday()
 
   for (let d = 1; d <= getDaysInMonth(month); d++) {
-    const istoday = (month == current.mm && d == current.dd)
+    const istoday = (month === current.mm && d === current.dd)
 
     days.push(
       <span className={classes({

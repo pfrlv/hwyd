@@ -9,7 +9,7 @@ html {
   padding: 0;
   height: 100%;
   width: 100%;
-  background: #111;
+  background: #141414;
   font-family: 'Heebo', sans-serif;
   font-weight: 400;
   font-size: 16px;
@@ -97,7 +97,7 @@ button {
     line-height: 0;
     padding-bottom: 25px;
     white-space: nowrap;
-    background: linear-gradient(180deg, #111 40%, rgba(20, 20, 20, 0.0) 100%);
+    background: linear-gradient(180deg, #141414 40%, rgba(20, 20, 20, 0.0) 100%);
     z-index: 10;
   }
 
@@ -111,7 +111,7 @@ button {
     height: 100px;
     padding: 20px 0 0;
     box-sizing: border-box;
-    background: linear-gradient(180deg, #111 15%, rgba(20, 20, 20, 0.0) 100%);
+    background: linear-gradient(180deg, #141414 15%, rgba(20, 20, 20, 0.0) 100%);
     color: #fff;
     z-index: 10;
   }
@@ -184,7 +184,7 @@ button {
   transform: translateX(-70px) rotate(-90deg);
   transform-origin: right top;
   z-index: 10;
-  user-select: none; 
+  user-select: none;
 }
 
 .footer-container {
@@ -206,7 +206,16 @@ button {
   padding: 0;
 }
 
-.logo-img { display: block; }
+.logo-img {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.current-date {
+  display: inline-block;
+  padding: 0 15px;
+  color: white;
+}
 
 .footer-bottom { order: 2; }
 
@@ -319,13 +328,13 @@ button {
 
 .is-goodday {
   background: #37b94d;
-  color: #111;
+  color: #141414;
   border-radius: 50%;
 }
 
 .is-badday {
   background: #ff3b30;
-  color: #111;
+  color: #141414;
   border-radius: 50%;
 }
 
@@ -362,7 +371,7 @@ button {
       position: absolute;
       width: 100%;
       height: 100%;
-      background-color: #111;
+      background-color: #141414;
       filter: blur(50px);
       z-index: -1;
     }

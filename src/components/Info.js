@@ -25,7 +25,7 @@ export default ({ modalRef, authRef }) => {
           </div>
           <div className='info-footer'>
             <span className='info-footer_text'>2017</span>
-            <span className='info-footer_text'>hwyd by Cartel</span>
+            <span className='info-footer_text'>hwyd by Ƨatire</span>
           </div>
           </div>
         </div>

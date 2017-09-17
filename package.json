@@ -15,7 +15,8 @@
     "postcss-simple-vars": "^4.1.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "react-scripts": "1.0.12"
+    "react-scripts": "1.0.12",
+    "react-transition-group": "^2.2.0"
   },
   "scripts": {
     "css:watch": "postcss src/styles/index.css -o src/index.css -w",

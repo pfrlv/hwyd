@@ -1,7 +1,6 @@
 .info-win {
   position: fixed;
   top: 46px @(min-width: $tabletLandscapeUp) 0px;
-  display: none;
   z-index: 10;
   height: calc(100% - 46px) @(min-width: $tabletLandscapeUp) 100%;
   width: 100% @(min-width: $tabletLandscapeUp) 940px;
@@ -9,7 +8,19 @@
   left: @(min-width: $tabletLandscapeUp) 0;
   margin-right: @(min-width: $tabletLandscapeUp) auto;
   margin-left: @(min-width: $tabletLandscapeUp) auto;
-  overflow: hidden;
+  will-change: opacity;
+}
+
+.info-win_is-close {
+  opacity: 0.01;
+  visibility: hidden;
+  transition: visibility 0ms 300ms, opacity 300ms;
+}
+
+.info-win_is-open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 300ms;
 }
 
 .info-container {
@@ -19,6 +30,8 @@
   overflow: scroll;
   padding-right: @(max-width: $tabletLandscapeUp) 1em;
   width: @(max-width: $tabletLandscapeUp) 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .info-track {
@@ -41,6 +54,17 @@
   justify-content: center;
   text-align: left;
   line-height: 25px;
+  will-change: transform;
+}
+
+.info-win_is-close .info-text {
+  transition: transform 310ms ease;
+  transform: translate3d(0, 15px, 0);
+}
+
+.info-win_is-open .info-text {
+  transition: transform 200ms cubic-bezier(.175,.8,.35,1.375);
+  transform: translate3d(0, 0, 0);
 }
 
 .info-auth {
@@ -61,6 +85,16 @@
     display: block;
     margin: 0 auto;
   }
+}
+
+.info-win_is-close .info-logo_wrap {
+  transition: transform 310ms ease;
+  transform: translate3d(0, -30px, 0);
+}
+
+.info-win_is-open .info-logo_wrap {
+  transition: transform 200ms cubic-bezier(.175,.8,.35,1.375);
+  transform: translate3d(0, 0, 0);
 }
 
 .info-footer {
@@ -87,13 +121,4 @@ button[type=log] {
   font-size: inherit;
   line-height: 50px;
   border: 1px solid $lightGray;
-}
-
-.is_open {
-  display: block;
-}
-
-.is_open_flex {
-  display: flex;
-  flex-direction: column;
 }

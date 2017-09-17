@@ -18,7 +18,7 @@ export default class App extends Component {
     this.state = {
       user: null,
       userDB: null,
-      isTime: currentTime.hours > 20,
+      isTime: (currentTime.hours > 20),
       isModalOpen: false
     }
 
@@ -91,7 +91,6 @@ export default class App extends Component {
       this.setState({
         userDB: snap.val()
       })
-      console.log(this.state)
     })
   }
 
@@ -115,8 +114,8 @@ export default class App extends Component {
   }
 
   toggleModalWin() {
-    this.setState(prevstate => ({
-      isModalOpen: !prevstate.isModalOpen
+    this.setState(prevState => ({
+      isModalOpen: !prevState.isModalOpen
     }))
   }
 

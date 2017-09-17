@@ -1,5 +1,6 @@
 import React from 'react'
-import current from './../helpers/getToday'
+import currentDay from './../helpers/getToday'
+import classes from 'classnames'
 
 import logo from './../assets/Logo.svg'
 
@@ -13,9 +14,12 @@ export default ({ modalRef, authRef }) => {
           </div>
         </div>
         <div className='footer-bottom'>
-          <span className='footer-txt'>{current.yy}</span>
+          <span className='footer-txt'>{currentDay.yy}</span>
           <span className='footer-txt'>hwyd by Ƨatire</span>
-          { (authRef.user !== null) ? <span className='footer-txt footer-txt_link' onClick={authRef.logout}>Logout</span> : <span className='footer-txt footer-txt_link' onClick={authRef.login}>Enter with Facebook</span> }
+          { (authRef.user !== null)
+            ? <span className='footer-txt footer-txt_link' onClick={authRef.logout}>Logout</span>
+            : <span className='footer-txt footer-txt_link' onClick={authRef.login}>Enter with Facebook</span>
+          }
           <a className='footer-txt footer-txt_link footer-txt_italic' onClick={modalRef.toggle} >i</a>
         </div>
       </div>

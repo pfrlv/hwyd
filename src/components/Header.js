@@ -1,7 +1,7 @@
 import React from 'react'
 import classes from 'classnames'
 
-import logo from '../assets/Logo.svg'
+import logo from './../assets/Logo.svg'
 
 export default ({ handleScroll, modalRef, monthesRowRef }) => {
   return (

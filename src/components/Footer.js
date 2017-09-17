@@ -1,7 +1,7 @@
 import React from 'react'
-import current from '../helpers/getToday'
+import current from './../helpers/getToday'
 
-import logo from '../assets/Logo.svg'
+import logo from './../assets/Logo.svg'
 
 export default ({ modalRef, authRef }) => {
   return (
@@ -11,12 +11,9 @@ export default ({ modalRef, authRef }) => {
           <div className='logo-wrap'>
             <img className='logo-img' alt='hwyd.' src={logo} />
           </div>
-          <div className='current-date'>
-            <span>{current.dd} {current.month} {current.yy}</span>
-          </div>
         </div>
         <div className='footer-bottom'>
-          <span className='footer-txt'>2017</span>
+          <span className='footer-txt'>{current.yy}</span>
           <span className='footer-txt'>hwyd by Ƨatire</span>
           { (authRef.user !== null) ? <span className='footer-txt footer-txt_link' onClick={authRef.logout}>Logout</span> : <span className='footer-txt footer-txt_link' onClick={authRef.login}>Enter with Facebook</span> }
           <a className='footer-txt footer-txt_link footer-txt_italic' onClick={modalRef.toggle} >i</a>

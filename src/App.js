@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import firebase, { auth, provider } from './helpers/firebase.js'
+import firebase, { auth, provider } from './helpers/firebase'
+import today from './helpers/getToday'
 
 import Header from './components/Header'
 import Calendar from './components/Calendar'
@@ -102,6 +103,11 @@ export default class App extends Component {
 
   componentDidMount() {
     const isTime = ((new Date()).getHours() >= 20)
+    
+
+    const baseTitle = document.title
+    document.title = `${baseTitle} · ${today.dd} ${today.month} ${today.yy}`
+
     this.setState({ isTime: isTime })
 
     auth.onAuthStateChanged(user => {

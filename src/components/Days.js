@@ -1,6 +1,6 @@
 import React from 'react'
 import classes from 'classnames'
-import current from '../helpers/getToday'
+import current from './../helpers/getToday'
 
 function getDaysInMonth (month) {
   var date = new Date((new Date()).getFullYear(), month, 1)

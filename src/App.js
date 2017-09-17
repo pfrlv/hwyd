@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import firebase, { auth, provider } from './helpers/firebase'
-import today from './helpers/getToday'
+import currentDay from './helpers/getToday'
+import currentTime from './helpers/getTime'
 
 import Header from './components/Header'
 import Calendar from './components/Calendar'
@@ -17,7 +18,7 @@ export default class App extends Component {
     this.state = {
       user: null,
       userDB: null,
-      isTime: true,
+      isTime: currentTime.hours > 20,
       isModalOpen: false
     }
 
@@ -102,13 +103,8 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    const isTime = ((new Date()).getHours() >= 20)
-    
-
     const baseTitle = document.title
-    document.title = `${baseTitle} · ${today.dd} ${today.month} ${today.yy}`
-
-    this.setState({ isTime: isTime })
+    document.title = `${baseTitle} · ${currentDay.dd} ${currentDay.month} ${currentDay.yy}`
 
     auth.onAuthStateChanged(user => {
       if (user) {
@@ -119,10 +115,9 @@ export default class App extends Component {
   }
 
   toggleModalWin() {
-    const currentState = this.state.isModalOpen
-    this.setState({
-      isModalOpen: !currentState
-    })
+    this.setState(prevstate => ({
+      isModalOpen: !prevstate.isModalOpen
+    }))
   }
 
   /*

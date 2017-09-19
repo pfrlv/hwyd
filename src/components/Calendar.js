@@ -1,25 +1,26 @@
 import React, { Component } from 'react'
 import Days from './Days'
 
+const $window = window
+
 export default class extends Component {
   constructor (props) {
     super(props)
 
     this.updateScrollPosition = this.updateScrollPosition.bind(this)
   }
+
   componentDidMount () {
-    window.addEventListener('load', this.updateScrollPosition)
+    $window.addEventListener('load', this.updateScrollPosition)
   }
 
   updateScrollPosition () {
     const todayBounds = this.todayRef.getBoundingClientRect()
-    const todayPosY = (todayBounds.top + todayBounds.height / 2) - window.innerHeight / 2
-    const todayPosX = (todayBounds.left + todayBounds.width / 2) - window.innerWidth / 2
+    const todayPosY = (todayBounds.top + todayBounds.height / 2) - $window.innerHeight / 2
+    const todayPosX = (todayBounds.left + todayBounds.width / 2) - $window.innerWidth / 2
 
     document.querySelector('.clndr-container').scrollTo(todayPosX, todayPosY)
   }
-
-
 
   render() {
     const months = []

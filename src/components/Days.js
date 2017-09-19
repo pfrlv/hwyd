@@ -17,19 +17,19 @@ function getDaysInMonth (month) {
 export default class extends Component {
   render() {
     const days = []
-    const month = this.props.month
+    const {month} = this.props
 
     for (let d = 1; d <= getDaysInMonth(month); d++) {
-      const istoday = (month === current.mm && d === current.dd)
+      const isToday = (month === current.mm && d === current.dd)
 
       days.push(
-        <span className={classes({
-          'column-cell': true,
-          'column-cell_day': true,
-          'is-today': istoday
-        })} 
+        <span className={classes(
+          'column-cell',
+          'column-cell_day',
+          {'is-today': isToday}
+        )} 
         data-day={d}
-        ref={istoday && this.props.todayRef}
+        ref={isToday && this.props.todayRef}
         key={d}>{d}</span>
       )
     }

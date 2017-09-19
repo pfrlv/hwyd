@@ -1,6 +1,5 @@
 import React from 'react'
 import currentDay from './../helpers/getToday'
-import classes from 'classnames'
 
 import logo from './../assets/Logo.svg'
 

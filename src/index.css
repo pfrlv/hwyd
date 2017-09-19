@@ -310,7 +310,7 @@ button {
 
 .clndr-container {
   overflow: scroll;
-  width: 100vw;
+  width: 100%;
   height: 100%;
 }
 
@@ -400,7 +400,7 @@ button {
 .info-win_is-close {
   opacity: 0.01;
   visibility: hidden;
-  transition: visibility 0ms 300ms, opacity 300ms;
+  transition: visibility 0ms 200ms, opacity 200ms;
 }
 
 .info-win_is-open {
@@ -437,7 +437,7 @@ button {
 }
 
 .info-win_is-close .info-text {
-  transition: transform 310ms ease;
+  transition: transform 210ms ease;
   transform: translate3d(0, 15px, 0);
 }
 
@@ -464,7 +464,7 @@ button {
   }
 
 .info-win_is-close .info-logo_wrap {
-  transition: transform 310ms ease;
+  transition: transform 210ms ease ;
   transform: translate3d(0, -30px, 0);
 }
 
@@ -508,7 +508,7 @@ button[type=log] {
 
 @media (min-width:991px){.clndr-track{max-width:940px;}}
 
-@media (min-width:991px){.clndr-track{padding:60px 0 35px;}}
+@media (min-width:991px){.clndr-track{padding:60px 0 0;}}
 
 @media (min-width:991px){.info-win{top:0px;}}
 

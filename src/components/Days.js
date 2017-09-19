@@ -22,17 +22,15 @@ export default class extends Component {
     for (let d = 1; d <= getDaysInMonth(month); d++) {
       const istoday = (month === current.mm && d === current.dd)
 
-      const attr = {
-        'data-day': d
-      }
-      if (istoday) attr.ref = this.props.todayRef
-
       days.push(
         <span className={classes({
           'column-cell': true,
           'column-cell_day': true,
           'is-today': istoday
-        })} {...attr} key={d}>{d}</span>
+        })} 
+        data-day={d}
+        ref={istoday && this.props.todayRef}
+        key={d}>{d}</span>
       )
     }
 

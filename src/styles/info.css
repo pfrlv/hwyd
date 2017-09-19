@@ -14,7 +14,7 @@
 .info-win_is-close {
   opacity: 0.01;
   visibility: hidden;
-  transition: visibility 0ms 300ms, opacity 300ms;
+  transition: visibility 0ms 200ms, opacity 200ms;
 }
 
 .info-win_is-open {
@@ -58,7 +58,7 @@
 }
 
 .info-win_is-close .info-text {
-  transition: transform 310ms ease;
+  transition: transform 210ms ease;
   transform: translate3d(0, 15px, 0);
 }
 
@@ -88,7 +88,7 @@
 }
 
 .info-win_is-close .info-logo_wrap {
-  transition: transform 310ms ease;
+  transition: transform 210ms ease ;
   transform: translate3d(0, -30px, 0);
 }
 

@@ -2,13 +2,24 @@ import React, { Component } from 'react'
 import Days from './Days'
 
 export default class extends Component {
-  componentDidMount() {
-    this.todayRef.scrollIntoView(true)
-    const aTop = this.todayRef.getBoundingClientRect().height
+  constructor (props) {
+    super(props)
 
-    /* ???????????????????????????????????? */
-    document.querySelector('.clndr-container').scrollBy(window.innerWidth/2, (aTop-window.innerHeight)/2)
+    this.updateScrollPosition = this.updateScrollPosition.bind(this)
   }
+  componentDidMount () {
+    window.addEventListener('load', this.updateScrollPosition)
+  }
+
+  updateScrollPosition () {
+    const todayBounds = this.todayRef.getBoundingClientRect()
+    const todayPosY = (todayBounds.top + todayBounds.height / 2) - window.innerHeight / 2
+    const todayPosX = (todayBounds.left + todayBounds.width / 2) - window.innerWidth / 2
+
+    document.querySelector('.clndr-container').scrollTo(todayPosX, todayPosY)
+  }
+
+
 
   render() {
     const months = []
@@ -19,7 +30,11 @@ export default class extends Component {
 
     return (
       <div className='clndr-wrap'>
-        <div className='clndr-container' ref={this.props.calendarRef} onTouchMove={this.props.handleScroll} onWheel={this.props.handleScroll}>
+        <div className='clndr-container'
+          ref={this.props.calendarRef}
+          onScroll={this.props.handleScroll}
+          onTouchMove={this.props.handleScroll}
+          onWheel={this.props.handleScroll}>
           <div className='clndr-track'>
             {months}
           </div>

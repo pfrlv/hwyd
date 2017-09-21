@@ -7,8 +7,8 @@ import Header from './components/Header'
 import Calendar from './components/Calendar'
 import Footer from './components/Footer'
 
-// import Alert from './components/Alert'
-// import Hero from './components/Hero'
+import Alert from './components/Alert'
+import Hero from './components/Hero'
 import Info from './components/Info'
 
 export default class App extends Component {
@@ -18,12 +18,15 @@ export default class App extends Component {
     this.state = {
       user: null,
       userDB: null,
-      isTime: (currentTime.hours > 20),
-      isModalOpen: false
+      isHeroMode: false,
+      isWarningMode: false,
+      isModalOpen: false,
     }
 
     this.handleScroll = this.handleScroll.bind(this)
     this.toggleModalWin = this.toggleModalWin.bind(this)
+    this.onAnswer = this.onAnswer.bind(this)
+    this.onHeroClose = this.onHeroClose.bind(this)
 
     this.login = this.login.bind(this)
     this.logout = this.logout.bind(this)
@@ -31,6 +34,16 @@ export default class App extends Component {
 
   handleScroll (ev) {
     this.monthesRowRef.scrollLeft = this.calendarRef.scrollLeft = ev.currentTarget.scrollLeft
+  }
+
+  onAnswer (isGodday) {
+    isGodday ? this.addGoodDay() : this.addBadDay()
+  }
+
+  onHeroClose () {
+    this.setState({
+      isHeroMode: false
+    })
   }
 
   logout() {
@@ -61,47 +74,82 @@ export default class App extends Component {
   }
 
   addGoodDay() {
-    var newDay = {
-      0: {
-        day: '31',
-        month: '5'
-      }
-    }
+    firebase.database().ref('users/' + this.state.user.uid + '/gooddays/').push({
+      day: currentDay.dd,
+      month: currentDay.mm
+    }, () => {
+      // Show thx msg & close after timeout
+      this.setState({
+        isHeroActive: false
+      })
 
-    const updates = {}
-    updates['/gooddays/'] = newDay
-    firebase.database().ref('users/' + this.state.user.uid).update(updates)
+
+    })
   }
 
   addBadDay() {
-    var newDay = {
-      0: {
-        day: '1',
-        month: '9'
-      }
-    }
-
-    const updates = {}
-    updates['/baddays/'] = newDay
-    firebase.database().ref('users/' + this.state.user.uid).update(updates)
-  }
-
-  getUserData() {
-    firebase.database().ref('users/').child(this.state.user.uid).on('value', snap => {
+    firebase.database().ref('users/' + this.state.user.uid + '/baddays/').push({
+      day: currentDay.dd,
+      month: currentDay.mm
+    }, () => {
+      // Show thx msg & close after timeout
       this.setState({
-        userDB: snap.val()
+        isHeroActive: false
       })
     })
   }
 
-  setNewUser() {
-    firebase.database().ref('users/' + this.state.user.uid).set({
-      username: this.state.user.displayName,
-      email: this.state.user.email
+  getUserData() {
+    firebase.database()
+      .ref('users/')
+      .child(this.state.user.uid)
+      .on('value', snap => {
+        this.setState({
+          userDB: snap.val()
+        })
+
+        const baddays = snap.val().baddays
+        const gooddays = snap.val().gooddays
+
+        if (baddays || baddays) {
+          for (let days in baddays) {
+            if((baddays[days].month === currentDay.mm) && (baddays[days].day === currentDay.dd))
+              return
+
+            this.setState({
+              isHeroMode: (currentTime.hours >= 20),
+              isWarningMode: (currentTime.hours < 20)
+            })
+          }
+
+          for (let days in gooddays) {
+            if((gooddays[days].month === currentDay.mm) && (gooddays[days].day === currentDay.dd))
+              return
+
+            this.setState({
+              isHeroMode: (currentTime.hours >= 20),
+              isWarningMode: (currentTime.hours < 20)
+            })
+          }
+        } else {
+          this.setState({
+            isHeroMode: (currentTime.hours >= 20),
+            isWarningMode: (currentTime.hours < 20)
+          })
+        }
     })
   }
 
-  componentDidMount() {
+  setNewUser() {
+    firebase.database()
+      .ref('users/' + this.state.user.uid)
+      .set({
+        username: this.state.user.displayName,
+        email: this.state.user.email
+      })
+  }
+
+  componentWillMount () {
     const baseTitle = document.title
     document.title = `${baseTitle} · ${currentDay.dd} ${currentDay.month} ${currentDay.yy}`
 
@@ -109,6 +157,10 @@ export default class App extends Component {
       if (user) {
         this.setState({ user })
         this.getUserData()
+
+        firebase.database()
+          .ref('users/')
+          .child(this.state.user.uid)
       }
     })
   }
@@ -118,14 +170,7 @@ export default class App extends Component {
       isModalOpen: !prevState.isModalOpen
     }))
   }
-
-  /*
-  { this.state.isTime
-    ? <Hero handleAnswer={this.handleAnswer} />
-    : <Alert />
-  }
-  */
-
+  
   render() {
     const authRef = {
       user: this.state.user,
@@ -144,6 +189,8 @@ export default class App extends Component {
         <Calendar calendarRef={el => this.calendarRef = el} handleScroll={this.handleScroll} />
         <Info modalRef={modalRef} authRef={authRef} />
         <Footer modalRef={modalRef} authRef={authRef} />
+        { this.state.isHeroMode && <Hero handleAnswer={this.onAnswer} handleClose={this.onHeroClose} /> }
+        { this.state.isWarningMode &&  <Alert /> }
       </div>
     )
   }

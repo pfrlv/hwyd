@@ -16,6 +16,10 @@
     opacity: 1;
   }
 
+  &_is-disable {
+    opacity: 0;
+  }
+
   &__body {
     position: relative;
     max-width: 510px;

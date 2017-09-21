@@ -74,29 +74,6 @@
   margin: 60px 0;
 }
 
-.info-logo {
-  &_wrap {
-    display: none @(min-width: $tabletLandscapeUp) block;
-    margin-bottom: 25px;
-  }
-
-  &_img {
-    width: 150px;
-    display: block;
-    margin: 0 auto;
-  }
-}
-
-.info-win_is-close .info-logo_wrap {
-  transition: transform 210ms ease ;
-  transform: translate3d(0, -30px, 0);
-}
-
-.info-win_is-open .info-logo_wrap {
-  transition: transform 200ms cubic-bezier(.175,.8,.35,1.375);
-  transform: translate3d(0, 0, 0);
-}
-
 .info-footer {
   margin-bottom: 20px;
   display: @(min-width: $tabletLandscapeUp) none;

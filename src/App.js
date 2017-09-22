@@ -111,7 +111,7 @@ export default class App extends Component {
         const baddays = snap.val().baddays
         const gooddays = snap.val().gooddays
 
-        if (baddays || baddays) {
+        if (baddays || gooddays) {
           for (let days in baddays) {
             if((baddays[days].month === currentDay.mm) && (baddays[days].day === currentDay.dd))
               return
@@ -120,11 +120,21 @@ export default class App extends Component {
               isHeroMode: (currentTime.hours >= 20),
               isWarningMode: (currentTime.hours < 20)
             })
+
+            const m = document.querySelector('[data-month="' + baddays[days].month + '"]')
+            const d = m.querySelector('[data-day="' + baddays[days].day + '"]')
+            
+            d.classList.add('is-bad-day')
           }
 
           for (let days in gooddays) {
             if((gooddays[days].month === currentDay.mm) && (gooddays[days].day === currentDay.dd))
               return
+
+            const m = document.querySelector('[data-month="' + gooddays[days].month + '"]')
+            const d = m.querySelector('[data-day="' + gooddays[days].day + '"]')
+            
+            d.classList.add('is-good-day')
 
             this.setState({
               isHeroMode: (currentTime.hours >= 20),

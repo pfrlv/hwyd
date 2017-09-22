@@ -82,6 +82,33 @@ button {
     color: #323232;
     font-size: 30px;
     line-height: 65px;
+    position: relative;
+  }
+
+.column-cell.is-bad-day:before {
+    content: '';
+    position: absolute;
+    display: block;
+    background-color: #ff3b30;
+    width: 60px;
+    height: 60px;
+    top: 0;
+    left: 0;
+    border-radius: 100%;
+    z-index: -1;
+  }
+
+.column-cell.is-good-day:before {
+    content: '';
+    position: absolute;
+    display: block;
+    background-color: #37b94d;
+    width: 60px;
+    height: 60px;
+    top: 0;
+    left: 0;
+    border-radius: 100%;
+    z-index: -1;
   }
 
 .column-cell_month {

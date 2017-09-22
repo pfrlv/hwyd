@@ -23,6 +23,7 @@
     "css:build": "postcss src/styles/index.css -o src/index.css",
     "start": "yarn 'css:watch' & react-scripts start",
     "build": "yarn 'css:build' && react-scripts build",
+    "deploy": "yarn build && firebase deploy",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }

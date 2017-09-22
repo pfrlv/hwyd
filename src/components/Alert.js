@@ -15,13 +15,21 @@ export default class extends Component {
 
     this.state = {
       message: messages[Random(0, (messages.length - 1))],
-      isHidden: false
+      isHidden: true
     }
 
     this.toggle = this.toggle.bind(this)
   }
 
-  toggle () {
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({
+        isHidden: false
+      })
+    }, 100)
+  }
+
+  toggle() {
     this.setState(prevState => ({
       isHidden: !prevState.isHidden
     }))

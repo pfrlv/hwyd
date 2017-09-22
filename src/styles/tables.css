@@ -1,3 +1,14 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.1);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.0);
+  }
+}
+
 .row {
   max-width: 940px;
   margin: 0 auto;
@@ -30,6 +41,7 @@
 
 .column-cell {
   width: 60px;
+  height: 60px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -39,6 +51,12 @@
     font-size: 30px;
     line-height: 65px;
     position: relative;
+    transition: color 300ms;
+  }
+
+  &.is-bad-day,
+  &.is-god-day {
+    color: $bg;
   }
 
   &.is-bad-day:before {
@@ -52,6 +70,7 @@
     left: 0;
     border-radius: 100%;
     z-index: -1;
+    animation: fadeIn 300ms cubic-bezier(.175,.8,.35,1.375);
   }
 
   &.is-good-day:before {
@@ -65,6 +84,7 @@
     left: 0;
     border-radius: 100%;
     z-index: -1;
+    animation: fadeIn 300ms cubic-bezier(.175,.8,.35,1.375);
   }
 
   &_month {

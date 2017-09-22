@@ -41,6 +41,17 @@ button {
   background: none;
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.1);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.0);
+  }
+}
+
 .row {
   max-width: 940px;
   margin: 0 auto;
@@ -73,6 +84,7 @@ button {
 
 .column-cell {
   width: 60px;
+  height: 60px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -83,6 +95,12 @@ button {
     font-size: 30px;
     line-height: 65px;
     position: relative;
+    transition: color 300ms;
+  }
+
+.column-cell.is-bad-day,
+  .column-cell.is-god-day {
+    color: #141414;
   }
 
 .column-cell.is-bad-day:before {
@@ -96,6 +114,7 @@ button {
     left: 0;
     border-radius: 100%;
     z-index: -1;
+    animation: fadeIn 300ms cubic-bezier(.175,.8,.35,1.375);
   }
 
 .column-cell.is-good-day:before {
@@ -109,6 +128,7 @@ button {
     left: 0;
     border-radius: 100%;
     z-index: -1;
+    animation: fadeIn 300ms cubic-bezier(.175,.8,.35,1.375);
   }
 
 .column-cell_month {

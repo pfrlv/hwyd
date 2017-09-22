@@ -19,7 +19,11 @@ export default ({ modalRef, authRef }) => {
             ? <span className='footer-txt footer-txt_link' onClick={authRef.logout}>Logout</span>
             : <span className='footer-txt footer-txt_link' onClick={authRef.login}>Enter with Facebook</span>
           }
-          <a className='footer-txt footer-txt_link footer-txt_italic' onClick={modalRef.toggle} >i</a>
+          { modalRef.state
+            ? <a className='footer-txt footer-txt_link' onClick={modalRef.toggle} >Close</a>
+            : <a className='footer-txt footer-txt_link' onClick={modalRef.toggle} >About</a>
+          }
+          
         </div>
       </div>
     </div>

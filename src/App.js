@@ -64,6 +64,7 @@ export default class App extends Component {
 
         firebase.database().ref('users/' + user.uid).once('value', snap => {
           const exists = (snap.val() !== null)
+          
           if (exists) {
             this.getUserData()
           } else {

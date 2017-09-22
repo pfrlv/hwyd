@@ -13,6 +13,14 @@ export default ({ handleScroll, modalRef, monthesRowRef }) => (
         <div className='header-logo-wrap'>
           <img className='header-logo-img' alt='hwyd.' src={logo} />
         </div>
+        <div className="header-info">
+
+          { modalRef.state 
+            ? <button className="header-info-button" onClick={modalRef.toggle}>Close</button>
+            : <button className="header-info-button" onClick={modalRef.toggle}>About</button>
+          }
+
+        </div>
       </div>
       <div className='row_body'>
         <div className='row_scroll'

@@ -83,8 +83,8 @@ button {
 }
 
 .column-cell {
-  width: 60px;
-  height: 60px;
+  width: 65px;
+  height: 65px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -93,14 +93,22 @@ button {
 .column-cell_day {
     color: #323232;
     font-size: 30px;
-    line-height: 65px;
+    line-height: 68.5px;
+    margin-bottom: 10px;
     position: relative;
+    will-change: color;
     transition: color 300ms;
   }
 
+.column-cell.is-today {
+    color: #fff;
+  }
+
 .column-cell.is-bad-day,
-  .column-cell.is-god-day {
-    color: #141414;
+  .column-cell.is-good-day,
+  .column-cell.is-bad-day.is-today,
+  .column-cell.is-good-day.is-today {
+    color: #141414 !important;
   }
 
 .column-cell.is-bad-day:before {
@@ -108,8 +116,8 @@ button {
     position: absolute;
     display: block;
     background-color: #ff3b30;
-    width: 60px;
-    height: 60px;
+    width: 65px;
+    height: 65px;
     top: 0;
     left: 0;
     border-radius: 100%;
@@ -122,8 +130,8 @@ button {
     position: absolute;
     display: block;
     background-color: #37b94d;
-    width: 60px;
-    height: 60px;
+    width: 65px;
+    height: 65px;
     top: 0;
     left: 0;
     border-radius: 100%;
@@ -436,19 +444,20 @@ button {
   z-index: 10;
   height:calc(100% - 46px);
   width:100%;
-  will-change: opacity;
+  will-change: opacity, visibility;
 }
 
 .info-win_is-close {
   opacity: 0.01;
   visibility: hidden;
-  transition: visibility 0ms 200ms, opacity 200ms;
+  transition: visibility 0ms 300ms, opacity 200ms;
 }
 
 .info-win_is-open {
   opacity: 1;
   visibility: visible;
   transition: opacity 300ms;
+  transition-delay: 0ms
 }
 
 .info-container {

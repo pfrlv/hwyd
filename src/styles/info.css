@@ -8,19 +8,20 @@
   left: @(min-width: $tabletLandscapeUp) 0;
   margin-right: @(min-width: $tabletLandscapeUp) auto;
   margin-left: @(min-width: $tabletLandscapeUp) auto;
-  will-change: opacity;
+  will-change: opacity, visibility;
 }
 
 .info-win_is-close {
   opacity: 0.01;
   visibility: hidden;
-  transition: visibility 0ms 200ms, opacity 200ms;
+  transition: visibility 0ms 300ms, opacity 200ms;
 }
 
 .info-win_is-open {
   opacity: 1;
   visibility: visible;
   transition: opacity 300ms;
+  transition-delay: 0ms
 }
 
 .info-container {

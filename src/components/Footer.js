@@ -16,8 +16,8 @@ export default ({ modalRef, authRef }) => {
           <span className='footer-txt'>{currentDay.yy}</span>
           <span className='footer-txt'>hwyd by Ƨatire</span>
           { (authRef.user !== null)
-            ? <span className='footer-txt footer-txt_link' onClick={authRef.logout}>Logout</span>
-            : <span className='footer-txt footer-txt_link' onClick={authRef.login}>Enter with Facebook</span>
+            ? <span className='footer-txt footer-txt_link' onClick={authRef.logout}>Signout</span>
+            : <span className='footer-txt footer-txt_link' onClick={authRef.login}>Signin with Facebook</span>
           }
           { modalRef.state
             ? <a className='footer-txt footer-txt_link' onClick={modalRef.toggle} >Close</a>

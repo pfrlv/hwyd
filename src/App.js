@@ -11,6 +11,8 @@ import Alert from './components/Alert'
 import Hero from './components/Hero'
 import Info from './components/Info'
 
+const baseHour = 20
+
 export default class App extends Component {
   constructor(props) {
     super(props)
@@ -20,7 +22,7 @@ export default class App extends Component {
       userDB: null,
       isHeroMode: false,
       isWarningMode: false,
-      isModalOpen: false,
+      isModalOpen: false
     }
 
     this.handleScroll = this.handleScroll.bind(this)
@@ -30,6 +32,9 @@ export default class App extends Component {
 
     this.login = this.login.bind(this)
     this.logout = this.logout.bind(this)
+
+    this.setUserData = this.setUserData.bind(this)
+    this.removeUserData = this.removeUserData.bind(this)
   }
 
   handleScroll (ev) {
@@ -49,9 +54,8 @@ export default class App extends Component {
   logout() {
     auth.signOut()
       .then(() => {
-        this.setState({
-          user: null
-        })
+        this.setState({user: null})
+        this.removeUserData()
       })
   }
 
@@ -105,50 +109,51 @@ export default class App extends Component {
       .ref('users/')
       .child(this.state.user.uid)
       .on('value', snap => {
-        this.setState({
-          userDB: snap.val()
-        })
+        this.setState({userDB: snap.val()}, () => this.setUserData())
+      })
+  }
 
-        const baddays = snap.val().baddays
-        const gooddays = snap.val().gooddays
+  removeUserData() {
+    const days = document.querySelectorAll('.column-cell_day')
 
-        if (baddays || gooddays) {
-          for (let days in baddays) {
-            if((baddays[days].month === currentDay.mm) && (baddays[days].day === currentDay.dd))
-              return
+    for (let day of days) {
+      day.classList.remove('is-bad-day', 'is-good-day')
+    }
+  }
 
-            this.setState({
-              isHeroMode: (currentTime.hours >= 20),
-              isWarningMode: (currentTime.hours < 20)
-            })
-
-            const m = document.querySelector('[data-month="' + baddays[days].month + '"]')
-            const d = m.querySelector('[data-day="' + baddays[days].day + '"]')
-            
-            d.classList.add('is-bad-day')
-          }
-
-          for (let days in gooddays) {
-            if((gooddays[days].month === currentDay.mm) && (gooddays[days].day === currentDay.dd))
-              return
-
-            const m = document.querySelector('[data-month="' + gooddays[days].month + '"]')
-            const d = m.querySelector('[data-day="' + gooddays[days].day + '"]')
-            
-            d.classList.add('is-good-day')
-
-            this.setState({
-              isHeroMode: (currentTime.hours >= 20),
-              isWarningMode: (currentTime.hours < 20)
-            })
-          }
-        } else {
+  setUserData() {
+    const badDays = this.state.userDB.baddays
+    const godDays = this.state.userDB.gooddays
+    
+    if(badDays) {
+      for (let days in badDays) {
+        if((badDays[days].month === currentDay.mm) && (badDays[days].day === currentDay.dd)) {
           this.setState({
-            isHeroMode: (currentTime.hours >= 20),
-            isWarningMode: (currentTime.hours < 20)
+            isHeroMode: false
           })
         }
-    })
+
+        const m = document.querySelector('[data-month="' + badDays[days].month + '"]')
+        const d = m.querySelector('[data-day="' + badDays[days].day + '"]')
+          
+        d.classList.add('is-bad-day')
+      }
+    }
+    
+    if(godDays) {
+      for (let days in godDays) {
+        if((godDays[days].month === currentDay.mm) && (godDays[days].day === currentDay.dd)) {
+          this.setState({
+            isHeroMode: false
+          })
+        }
+
+        const m = document.querySelector('[data-month="' + godDays[days].month + '"]')
+        const d = m.querySelector('[data-day="' + godDays[days].day + '"]')
+          
+        d.classList.add('is-good-day')
+      }
+    }
   }
 
   setNewUser() {
@@ -163,6 +168,11 @@ export default class App extends Component {
   componentWillMount () {
     const baseTitle = document.title
     document.title = `${baseTitle} · ${currentDay.dd} ${currentDay.month} ${currentDay.yy}`
+
+    this.setState({
+      isHeroMode: currentTime.hours >= baseHour,
+      isWarningMode: currentTime.hours < baseHour
+    })
 
     auth.onAuthStateChanged(user => {
       if (user) {

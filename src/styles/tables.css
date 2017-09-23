@@ -40,8 +40,8 @@
 }
 
 .column-cell {
-  width: 60px;
-  height: 60px;
+  width: 65px;
+  height: 65px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -49,14 +49,22 @@
   &_day {
     color: $gray;
     font-size: 30px;
-    line-height: 65px;
+    line-height: 68.5px;
+    margin-bottom: 10px;
     position: relative;
+    will-change: color;
     transition: color 300ms;
   }
 
+  &.is-today {
+    color: $white;
+  }
+
   &.is-bad-day,
-  &.is-god-day {
-    color: $bg;
+  &.is-good-day,
+  &.is-bad-day.is-today,
+  &.is-good-day.is-today {
+    color: $bg !important;
   }
 
   &.is-bad-day:before {
@@ -64,8 +72,8 @@
     position: absolute;
     display: block;
     background-color: $red;
-    width: 60px;
-    height: 60px;
+    width: 65px;
+    height: 65px;
     top: 0;
     left: 0;
     border-radius: 100%;
@@ -78,8 +86,8 @@
     position: absolute;
     display: block;
     background-color: $green;
-    width: 60px;
-    height: 60px;
+    width: 65px;
+    height: 65px;
     top: 0;
     left: 0;
     border-radius: 100%;

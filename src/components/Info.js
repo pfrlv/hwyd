@@ -2,8 +2,7 @@ import React from 'react'
 import classes from 'classnames'
 
 export default ({ modalRef, authRef }) => (
-  <div className={classes({
-    'info-win': true,
+  <div className={classes('info-win', {
     'info-win_is-open': modalRef.state,
     'info-win_is-close': !modalRef.state
   })}>

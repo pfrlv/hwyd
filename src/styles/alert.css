@@ -36,11 +36,8 @@
   will-chnage: opacity;
   transition: opacity 160ms ease;
 
-  &:hover,
-  &:active,
-  &:focus {
-    opacity: 1;
-  }
+  .Mouse &:hover,
+  &:active { opacity: 1; }
 
   &:after {
     content: '';

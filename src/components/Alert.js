@@ -26,7 +26,7 @@ export default class extends Component {
       this.setState({
         isHidden: false
       })
-    }, 100)
+    }, 40)
   }
 
   toggle() {
@@ -37,10 +37,7 @@ export default class extends Component {
 
   render() {
     return (
-      <div className={classes({
-        alert: true,
-        alert__hidden: this.state.isHidden
-      })}>
+      <div className={classes('alert', {'alert__hidden': this.state.isHidden})}>
         <button className="alert__hide" title="Hide Message" onClick={this.toggle} />
         <p className="alert__msg">{this.state.message}</p>
       </div>

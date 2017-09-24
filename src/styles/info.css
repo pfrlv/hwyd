@@ -14,14 +14,13 @@
 .info-win_is-close {
   opacity: 0.01;
   visibility: hidden;
-  transition: visibility 0ms 300ms, opacity 200ms;
+  transition: opacity 200ms, visibility 0ms 200ms;
 }
 
 .info-win_is-open {
   opacity: 1;
   visibility: visible;
-  transition: opacity 300ms;
-  transition-delay: 0ms
+  transition: opacity 200ms;
 }
 
 .info-container {
@@ -29,8 +28,8 @@
   height: 100%;
   justify-content: space-between;
   overflow: scroll;
-  padding-right: @(max-width: $tabletLandscapeUp) 1em;
-  width: @(max-width: $tabletLandscapeUp) 100%;
+  padding-right: 1em;
+  width: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -59,12 +58,12 @@
 }
 
 .info-win_is-close .info-text {
-  transition: transform 210ms ease;
-  transform: translate3d(0, 15px, 0);
+  transition: @(min-width: $tabletLandscapeUp) transform 200ms cubic-bezier(.175,.8,.35,1.375);
+  transform: @(min-width: $tabletLandscapeUp) translate3d(0, 15px, 0);
 }
 
 .info-win_is-open .info-text {
-  transition: transform 200ms cubic-bezier(.175,.8,.35,1.375);
+  transition: @(min-width: $tabletLandscapeUp) transform 200ms cubic-bezier(.175,.8,.35,1.375);
   transform: translate3d(0, 0, 0);
 }
 

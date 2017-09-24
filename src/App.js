@@ -11,7 +11,7 @@ import Alert from './components/Alert'
 import Hero from './components/Hero'
 import Info from './components/Info'
 
-const baseHour = 20
+const baseHour = 24
 
 export default class App extends Component {
   constructor(props) {
@@ -114,10 +114,10 @@ export default class App extends Component {
   }
 
   removeUserData() {
-    const days = document.querySelectorAll('.column-cell_day')
+    const days = document.getElementsByClassName('column-cell_day')
 
-    for (let day of days) {
-      day.classList.remove('is-bad-day', 'is-good-day')
+    for (let i = days.length - 1; i >= 0; i--) {
+      days[i].classList.remove('is-bad-day', 'is-good-day')
     }
   }
 
@@ -130,6 +130,10 @@ export default class App extends Component {
         if((badDays[days].month === currentDay.mm) && (badDays[days].day === currentDay.dd)) {
           this.setState({
             isHeroMode: false
+          })
+        } else {
+          this.setState({
+            isWarningMode: currentTime.hours < baseHour
           })
         }
 
@@ -145,6 +149,10 @@ export default class App extends Component {
         if((godDays[days].month === currentDay.mm) && (godDays[days].day === currentDay.dd)) {
           this.setState({
             isHeroMode: false
+          })
+        } else {
+          this.setState({
+            isWarningMode: currentTime.hours < baseHour
           })
         }
 
@@ -169,11 +177,6 @@ export default class App extends Component {
     const baseTitle = document.title
     document.title = `${baseTitle} · ${currentDay.dd} ${currentDay.month} ${currentDay.yy}`
 
-    this.setState({
-      isHeroMode: currentTime.hours >= baseHour,
-      isWarningMode: currentTime.hours < baseHour
-    })
-
     auth.onAuthStateChanged(user => {
       if (user) {
         this.setState({ user })
@@ -182,6 +185,11 @@ export default class App extends Component {
         firebase.database()
           .ref('users/')
           .child(this.state.user.uid)
+      } else {
+        this.setState({
+          isHeroMode: currentTime.hours >= baseHour,
+          isWarningMode: currentTime.hours < baseHour
+        })
       }
     })
   }
@@ -208,10 +216,13 @@ export default class App extends Component {
       <div>
         <Header handleScroll={this.handleScroll} modalRef={modalRef} monthesRowRef={el => this.monthesRowRef = el} />
         <Calendar calendarRef={el => this.calendarRef = el} handleScroll={this.handleScroll} />
-        <Info modalRef={modalRef} authRef={authRef} />
+        
         <Footer modalRef={modalRef} authRef={authRef} />
+
         { this.state.isHeroMode && <Hero handleAnswer={this.onAnswer} handleClose={this.onHeroClose} /> }
         { this.state.isWarningMode &&  <Alert /> }
+
+        <Info modalRef={modalRef} authRef={authRef} />
       </div>
     )
   }

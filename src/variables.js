@@ -1,10 +1,10 @@
 module.exports = {
-  bg: '#141414',
+  bg: '#1b1b1b',
   white: '#fff',
   lightGray: '#888888',
   gray: '#323232',
-  darkGray: '#141414',
-  green: '#37b94d',
+  darkGray: '#1b1b1b',
+  green: '#04c564',
   red: '#ff3b30',
   mobileUp: '568px',
   tabletUp: '736px',

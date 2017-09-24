@@ -53,47 +53,33 @@
     margin-bottom: 10px;
     position: relative;
     will-change: color;
-    transition: color 300ms;
+    transition: color 300ms cubic-bezier(.175,.8,.35,1.375);
   }
 
-  &.is-today {
-    color: $white;
-  }
+  &.is-today { color: $white; }
 
   &.is-bad-day,
   &.is-good-day,
   &.is-bad-day.is-today,
-  &.is-good-day.is-today {
-    color: $bg !important;
-  }
+  &.is-good-day.is-today { color: $bg !important; }
 
-  &.is-bad-day:before {
-    content: '';
-    position: absolute;
-    display: block;
-    background-color: $red;
-    width: 65px;
-    height: 65px;
-    top: 0;
-    left: 0;
-    border-radius: 100%;
-    z-index: -1;
-    animation: fadeIn 300ms cubic-bezier(.175,.8,.35,1.375);
-  }
-
+  &.is-bad-day:before,
   &.is-good-day:before {
     content: '';
     position: absolute;
     display: block;
-    background-color: $green;
     width: 65px;
     height: 65px;
     top: 0;
     left: 0;
     border-radius: 100%;
     z-index: -1;
+    will-change: transform, opacity;
     animation: fadeIn 300ms cubic-bezier(.175,.8,.35,1.375);
   }
+
+  &.is-bad-day:before { background-color: $red;  }
+  &.is-good-day:before { background-color: $green; }
 
   &_month {
     font-weight: 900;

@@ -5,8 +5,7 @@ import logo from './../assets/Logo.svg'
 
 export default ({ handleScroll, modalRef, monthesRowRef }) => (
   <div className='header-wrap'>
-    <div className={classes({
-        'header-container_mobile': true,
+    <div className={classes('header-container_mobile', {
         'is_modal_open': modalRef.state
       })}>
       <div className='container_fixed'>

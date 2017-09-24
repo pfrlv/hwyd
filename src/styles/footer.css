@@ -61,7 +61,7 @@
     transition: opacity 160ms ease;
     cursor: pointer;
 
-    &:hover,
+    .Mouse &:hover,
     &:active { opacity: 0.5; }
   }
 

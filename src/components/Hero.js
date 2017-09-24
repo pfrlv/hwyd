@@ -37,7 +37,7 @@ export default class extends Component {
         'hero_is-active': this.state.isActive
       })} ref={this.props.hero}>
         <div className="hero__body">
-          <p className="hero__text">Hey sexy, did anything positively surprised you today?</p>
+          <p className="hero__text">Hey sexy, has anything surprised you positively today?</p>
           <div className="hero__buttons">
             <button className="hero__button" data-type={true} onClick={this.onAnswer}>Yes</button>
             <button className="hero__button" data-type={false} onClick={this.onAnswer}>No</button>

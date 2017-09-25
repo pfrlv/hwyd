@@ -64,6 +64,4 @@
     .Mouse &:hover,
     &:active { opacity: 0.5; }
   }
-
-  &_italic { font-style: italic; }
 }

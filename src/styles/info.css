@@ -9,6 +9,7 @@
   margin-right: @(min-width: $tabletLandscapeUp) auto;
   margin-left: @(min-width: $tabletLandscapeUp) auto;
   will-change: opacity, visibility;
+  color: $white;
 }
 
 .info-win_is-close {
@@ -42,7 +43,7 @@
 }
 
 .info-text {
-  color: $lightGray;
+  color: $white;
   white-space: normal;
   line-height: 20px;
   padding: 10px 45px 0 25px @(min-width: $tabletLandscapeUp) 0;
@@ -72,27 +73,25 @@
   display: @(min-width: $tabletLandscapeUp) none;
   flex-grow: 1;
   margin: 60px 0;
+  padding: 0 25px;
 }
 
 .info-footer {
   margin-bottom: 20px;
-  display: @(min-width: $tabletLandscapeUp) none;
+  padding: 0 25px;
+  display: flex @(min-width: $tabletLandscapeUp) none;
+  justify-content: space-between;
 
   &_text {
     display: inline-block;
-    padding: 0 15px;
     font-size: 16px;
     line-height: 45px;
-    color: $lightGray;
-
-    &:last-of-type { padding-right: 30px; }
   }
 }
 
 button[type=log] {
   position: relative;
   display: block;
-  margin: 0 auto;
   width: 220px;
   color: $white;
   font-size: inherit;

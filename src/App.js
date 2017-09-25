@@ -216,7 +216,7 @@ export default class App extends Component {
       <div>
         <Header handleScroll={this.handleScroll} modalRef={modalRef} monthesRowRef={el => this.monthesRowRef = el} />
         <Calendar calendarRef={el => this.calendarRef = el} handleScroll={this.handleScroll} />
-        
+
         <Footer modalRef={modalRef} authRef={authRef} />
 
         { this.state.isHeroMode && <Hero handleAnswer={this.onAnswer} handleClose={this.onHeroClose} /> }

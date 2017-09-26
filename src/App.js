@@ -68,7 +68,7 @@ export default class App extends Component {
 
         firebase.database().ref('users/' + user.uid).once('value', snap => {
           const exists = (snap.val() !== null)
-          
+
           if (exists) {
             this.getUserData()
           } else {
@@ -124,7 +124,7 @@ export default class App extends Component {
   setUserData() {
     const badDays = this.state.userDB.baddays
     const godDays = this.state.userDB.gooddays
-    
+
     if(badDays) {
       for (let days in badDays) {
         if((badDays[days].month === currentDay.mm) && (badDays[days].day === currentDay.dd)) {
@@ -139,11 +139,11 @@ export default class App extends Component {
 
         const m = document.querySelector('[data-month="' + badDays[days].month + '"]')
         const d = m.querySelector('[data-day="' + badDays[days].day + '"]')
-          
+
         d.classList.add('is-bad-day')
       }
     }
-    
+
     if(godDays) {
       for (let days in godDays) {
         if((godDays[days].month === currentDay.mm) && (godDays[days].day === currentDay.dd)) {
@@ -158,7 +158,7 @@ export default class App extends Component {
 
         const m = document.querySelector('[data-month="' + godDays[days].month + '"]')
         const d = m.querySelector('[data-day="' + godDays[days].day + '"]')
-          
+
         d.classList.add('is-good-day')
       }
     }
@@ -199,7 +199,7 @@ export default class App extends Component {
       isModalOpen: !prevState.isModalOpen
     }))
   }
-  
+
   render() {
     const authRef = {
       user: this.state.user,
@@ -219,7 +219,7 @@ export default class App extends Component {
 
         <Footer modalRef={modalRef} authRef={authRef} />
 
-        { this.state.isHeroMode && <Hero handleAnswer={this.onAnswer} handleClose={this.onHeroClose} /> }
+        { this.state.isHeroMode && <Hero handleAnswer={this.onAnswer} handleClose={this.onHeroClose} user={this.state.user} /> }
         { this.state.isWarningMode &&  <Alert /> }
 
         <Info modalRef={modalRef} authRef={authRef} />

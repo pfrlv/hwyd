@@ -27,45 +27,42 @@
 .info-container {
   background: $darkGray;
   height: 100%;
-  justify-content: space-between;
   overflow: scroll;
   padding-right: 1em;
   width: 100%;
-  display: flex;
-  flex-direction: column;
 }
 
 .info-track {
-  display: @(min-width: $tabletLandscapeUp) flex;
-  flex-direction: @(min-width: $tabletLandscapeUp) column;
-  height: @(min-width: $tabletLandscapeUp) 100%;
-  justify-content: @(min-width: $tabletLandscapeUp) space-between;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  align-items: @(min-width: $tabletLandscapeUp) center;
+  justify-content: @(min-width: $tabletLandscapeUp) center;
+}
+
+.info-body {
+  flex: 1 @(min-width: $tabletLandscapeUp) 0;
 }
 
 .info-text {
   color: $white;
-  white-space: normal;
   line-height: 20px;
   padding: 10px 45px 0 25px @(min-width: $tabletLandscapeUp) 0;
-  max-width: @(min-width: $tabletLandscapeUp) 390px;
-  margin: 0 auto;
-  flex-grow: 0 @(min-width: $tabletLandscapeUp) 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: left;
+  max-width: 500px;
+  font-size: 18px;
   line-height: 25px;
   will-change: transform;
+  perspective: 400px;
 }
 
 .info-win_is-close .info-text {
   transition: @(min-width: $tabletLandscapeUp) transform 200ms cubic-bezier(.175,.8,.35,1.375);
-  transform: @(min-width: $tabletLandscapeUp) translate3d(0, 15px, 0);
+  transform: @(min-width: $tabletLandscapeUp) translate3d(0, 15px, 0) rotateX(-20deg);
 }
 
 .info-win_is-open .info-text {
   transition: @(min-width: $tabletLandscapeUp) transform 200ms cubic-bezier(.175,.8,.35,1.375);
-  transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0) rotateX(0deg);
 }
 
 .info-auth {
@@ -77,8 +74,7 @@
 }
 
 .info-footer {
-  margin-bottom: 20px;
-  padding: 0 25px;
+  padding: 0 25px 15px;
   display: flex @(min-width: $tabletLandscapeUp) none;
   justify-content: space-between;
 
@@ -96,5 +92,6 @@ button[type=log] {
   color: $white;
   font-size: inherit;
   line-height: 50px;
+  font-size: 18px;
   border: 1px solid $lightGray;
 }

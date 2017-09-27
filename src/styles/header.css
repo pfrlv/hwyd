@@ -6,7 +6,7 @@
     line-height: 0;
     padding-bottom: 25px;
     white-space: nowrap;
-    background: linear-gradient(180deg, $bg 45px, rgba(20, 20, 20, 0.0) 100%);
+    background: linear-gradient(180deg, $bg 45px, rgba(0, 0, 0, 0.0) 100%);
     z-index: 10;
   }
 
@@ -20,7 +20,7 @@
     height: 100px;
     padding: 20px 0 0;
     box-sizing: border-box;
-    background: linear-gradient(180deg, $bg 15%, rgba(20, 20, 20, 0.0) 100%);
+    background: linear-gradient(180deg, $bg 10%, rgba(0, 0, 0, 0.0) 100%);
     color: $white;
     z-index: 10;
   }

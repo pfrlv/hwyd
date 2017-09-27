@@ -45,3 +45,8 @@ button {
   border-radius: 0;
   background: none;
 }
+
+.mark {
+  &_red { color: $red }
+  &_green { color: $green }
+}

@@ -1,6 +1,7 @@
 .alert {
   position: fixed;
   bottom: 25px;
+  padding: 0 25px;
   left: 0;
   right: 0;
   max-width: 340px;
@@ -16,11 +17,30 @@
 }
 
 .alert__msg {
+  position: relative;
   text-align: center;
   font-size: 16px;
   line-height: 25px;
   will-chnage: visibility;
   transition: visibility 0ms;
+
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: $bg;
+    filter: blur(25px);
+    z-index: -1;
+    opacity: 1;
+    will-chnage: opacity;
+    transition: opacity 200ms; 
+  }
+
+  .alert__hidden &::before {
+    opacity: 0;
+  }
 
   .alert__hidden & {
     visibility: hidden;

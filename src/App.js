@@ -11,7 +11,7 @@ import Alert from './components/Alert'
 import Hero from './components/Hero'
 import Info from './components/Info'
 
-const baseHour = 24
+const baseHour = 25
 
 export default class App extends Component {
   constructor(props) {
@@ -124,16 +124,17 @@ export default class App extends Component {
   setUserData() {
     const badDays = this.state.userDB.baddays
     const godDays = this.state.userDB.gooddays
+
+    this.setState({
+      isWarningMode: currentTime.hours < baseHour,
+      isHeroMode: currentTime.hours >= baseHour
+    })
     
     if(badDays) {
       for (let days in badDays) {
         if((badDays[days].month === currentDay.mm) && (badDays[days].day === currentDay.dd)) {
           this.setState({
             isHeroMode: false
-          })
-        } else {
-          this.setState({
-            isWarningMode: currentTime.hours < baseHour
           })
         }
 
@@ -149,10 +150,6 @@ export default class App extends Component {
         if((godDays[days].month === currentDay.mm) && (godDays[days].day === currentDay.dd)) {
           this.setState({
             isHeroMode: false
-          })
-        } else {
-          this.setState({
-            isWarningMode: currentTime.hours < baseHour
           })
         }
 

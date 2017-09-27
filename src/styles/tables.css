@@ -19,13 +19,13 @@
     width: 940px;
     position: relative;
     margin: 0;
-    padding: 0 10px 100px;
+    padding: 0 10px 50px;
     white-space: nowrap;
   }
 
   &_body {
     padding: 10px 0 0;
-    margin-bottom: -100px;
+    margin-bottom: -50px;
     overflow: hidden
   }
 

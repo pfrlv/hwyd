@@ -5,8 +5,14 @@ import Random from './../helpers/random'
 
 const messages = [
   '¿No hablas Español? Then you can’t have Spanish siesta. Come around after 8pm',
-  'Come on now, you are not 80 to go to bed this early!',
-  'Horray! Another new day. Let’s hope it won’t rain'
+  'It’s too early, dude! Go party or something!',
+  'HWYD. is not morning sex, it’s too early for it!',
+  'Shhh... Hear that? It’s others living their day instead of marking it on HWYD.',
+  'It’s early for HWYD. not wine.',
+  'If you think couple of hours can’t change everything, just wait',
+  'Aren’t you supposed to work? HWYD. is not for procrastinators!',
+  'Roses are red, grass is green. If you’re here for HWYD., later you must be',
+  'Have you seen BBC news at 8pm? Come back after',
 ]
 
 export default class extends Component {

@@ -15,7 +15,7 @@
 .info-win_is-close {
   opacity: 0.01;
   visibility: hidden;
-  transition: opacity 200ms, visibility 0ms 200ms;
+  transition: opacity 200ms, visibility 0ms 200ms @(min-width: $tabletLandscapeUp) opacity 200ms 150ms, visibility 0ms 350ms;
 }
 
 .info-win_is-open {
@@ -42,6 +42,7 @@
 
 .info-body {
   flex: 1 @(min-width: $tabletLandscapeUp) 0;
+  /* perspective-origin: 0; */
 }
 
 .info-text {
@@ -52,17 +53,18 @@
   font-size: 18px;
   line-height: 25px;
   will-change: transform;
-  perspective: 400px;
 }
 
 .info-win_is-close .info-text {
-  transition: @(min-width: $tabletLandscapeUp) transform 200ms cubic-bezier(.175,.8,.35,1.375);
-  transform: @(min-width: $tabletLandscapeUp) translate3d(0, 15px, 0) rotateX(-20deg);
+  transition: @(min-width: $tabletLandscapeUp) transform 200ms, opacity 200ms;
+  transform: @(min-width: $tabletLandscapeUp) translate3d(0, 30px, 0);
+  opacity: @(min-width: $tabletLandscapeUp) 0;
 }
 
 .info-win_is-open .info-text {
-  transition: @(min-width: $tabletLandscapeUp) transform 200ms cubic-bezier(.175,.8,.35,1.375);
-  transform: translate3d(0, 0, 0) rotateX(0deg);
+  transition: @(min-width: $tabletLandscapeUp) transform 200ms 200ms cubic-bezier(.175,.8,.35,1.375), opacity 200ms 200ms;
+  transform: translate3d(0, 0, 0);
+  opacity: @(min-width: $tabletLandscapeUp) 1;
 }
 
 .info-auth {

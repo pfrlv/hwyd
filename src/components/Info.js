@@ -17,7 +17,7 @@ export default ({ modalRef, authRef }) => (
             </p>
           </div>
           <div className='info-auth'>
-            { (authRef.user !== null) ? <button type='log' onClick={authRef.logout} className='info-log'>Signout</button> : <button type='log' onClick={authRef.login} className='info-log'>Signin with Facebook</button> }
+            { (authRef.user !== null) ? <button type='log' onClick={authRef.logout} className='info-log'>Sign out</button> : <button type='log' onClick={authRef.login} className='info-log'>Sign in with Facebook</button> }
           </div>
         </div>
         <div className='info-footer'>

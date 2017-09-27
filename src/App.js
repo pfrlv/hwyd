@@ -9,9 +9,10 @@ import Footer from './components/Footer'
 
 import Alert from './components/Alert'
 import Hero from './components/Hero'
+import HeroNot from './components/HeroNot'
 import Info from './components/Info'
 
-const baseHour = 24
+const baseHour = 10
 
 export default class App extends Component {
   constructor(props) {
@@ -21,6 +22,7 @@ export default class App extends Component {
       user: null,
       userDB: null,
       isHeroMode: false,
+      isHeroNotMode: false,
       isWarningMode: false,
       isModalOpen: false
     }
@@ -42,6 +44,13 @@ export default class App extends Component {
   }
 
   onAnswer (isGodday) {
+    if(this.state.user == null) {
+      this.setState({
+        isHeroNotMode: true,
+        isHeroMode: false
+      })
+      return
+    }
     isGodday ? this.addGoodDay() : this.addBadDay()
   }
 
@@ -179,7 +188,11 @@ export default class App extends Component {
 
     auth.onAuthStateChanged(user => {
       if (user) {
-        this.setState({ user })
+        this.setState({
+          user,
+          isHeroNotMode: false,
+          isHeroMode: currentTime.hours >= baseHour
+        })
         this.getUserData()
 
         firebase.database()
@@ -219,7 +232,8 @@ export default class App extends Component {
 
         <Footer modalRef={modalRef} authRef={authRef} />
 
-        { this.state.isHeroMode && <Hero handleAnswer={this.onAnswer} handleClose={this.onHeroClose} user={this.state.user} /> }
+        { this.state.isHeroMode && <Hero handleAnswer={this.onAnswer} handleClose={this.onHeroClose} /> }
+        { this.state.isHeroNotMode && <HeroNot login={this.login} /> }
         { this.state.isWarningMode &&  <Alert /> }
 
         <Info modalRef={modalRef} authRef={authRef} />

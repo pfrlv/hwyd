@@ -9,9 +9,10 @@ import Footer from './components/Footer'
 
 import Alert from './components/Alert'
 import Hero from './components/Hero'
+import HeroNot from './components/HeroNot'
 import Info from './components/Info'
 
-const baseHour = 25
+const baseHour = 10
 
 export default class App extends Component {
   constructor(props) {
@@ -21,6 +22,7 @@ export default class App extends Component {
       user: null,
       userDB: null,
       isHeroMode: false,
+      isHeroNotMode: false,
       isWarningMode: false,
       isModalOpen: false
     }
@@ -42,6 +44,13 @@ export default class App extends Component {
   }
 
   onAnswer (isGodday) {
+    if(this.state.user == null) {
+      this.setState({
+        isHeroNotMode: true,
+        isHeroMode: false
+      })
+      return
+    }
     isGodday ? this.addGoodDay() : this.addBadDay()
   }
 
@@ -68,7 +77,7 @@ export default class App extends Component {
 
         firebase.database().ref('users/' + user.uid).once('value', snap => {
           const exists = (snap.val() !== null)
-          
+
           if (exists) {
             this.getUserData()
           } else {
@@ -125,11 +134,6 @@ export default class App extends Component {
     const badDays = this.state.userDB.baddays
     const godDays = this.state.userDB.gooddays
 
-    this.setState({
-      isWarningMode: currentTime.hours < baseHour,
-      isHeroMode: currentTime.hours >= baseHour
-    })
-    
     if(badDays) {
       for (let days in badDays) {
         if((badDays[days].month === currentDay.mm) && (badDays[days].day === currentDay.dd)) {
@@ -140,11 +144,11 @@ export default class App extends Component {
 
         const m = document.querySelector('[data-month="' + badDays[days].month + '"]')
         const d = m.querySelector('[data-day="' + badDays[days].day + '"]')
-          
+
         d.classList.add('is-bad-day')
       }
     }
-    
+
     if(godDays) {
       for (let days in godDays) {
         if((godDays[days].month === currentDay.mm) && (godDays[days].day === currentDay.dd)) {
@@ -155,7 +159,7 @@ export default class App extends Component {
 
         const m = document.querySelector('[data-month="' + godDays[days].month + '"]')
         const d = m.querySelector('[data-day="' + godDays[days].day + '"]')
-          
+
         d.classList.add('is-good-day')
       }
     }
@@ -176,7 +180,11 @@ export default class App extends Component {
 
     auth.onAuthStateChanged(user => {
       if (user) {
-        this.setState({ user })
+        this.setState({
+          user,
+          isHeroNotMode: false,
+          isHeroMode: currentTime.hours >= baseHour
+        })
         this.getUserData()
 
         firebase.database()
@@ -196,7 +204,7 @@ export default class App extends Component {
       isModalOpen: !prevState.isModalOpen
     }))
   }
-  
+
   render() {
     const authRef = {
       user: this.state.user,
@@ -217,6 +225,7 @@ export default class App extends Component {
         <Footer modalRef={modalRef} authRef={authRef} />
 
         { this.state.isHeroMode && <Hero handleAnswer={this.onAnswer} handleClose={this.onHeroClose} /> }
+        { this.state.isHeroNotMode && <HeroNot login={this.login} /> }
         { this.state.isWarningMode &&  <Alert /> }
 
         <Info modalRef={modalRef} authRef={authRef} />

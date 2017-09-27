@@ -39,6 +39,8 @@
     }
   }
 
+  &__log { margin: 0 auto; }
+
   &__text { margin-bottom: 30px; }
 
   &__buttons { line-height: 0; }

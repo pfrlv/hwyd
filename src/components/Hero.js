@@ -16,7 +16,7 @@ export default class extends Component {
     this.setState({isActive: false})
 
     this.props.handleAnswer(JSON.parse(ev.target.dataset.type))
-    
+
     setTimeout(() => {
       this.props.handleClose()
     }, 400)

@@ -12,7 +12,7 @@ import Hero from './components/Hero'
 import HeroNot from './components/HeroNot'
 import Info from './components/Info'
 
-const baseHour = 10
+const baseHour = 20
 
 export default class App extends Component {
   constructor(props) {
@@ -51,6 +51,7 @@ export default class App extends Component {
       })
       return
     }
+
     isGodday ? this.addGoodDay() : this.addBadDay()
   }
 
@@ -183,7 +184,8 @@ export default class App extends Component {
         this.setState({
           user,
           isHeroNotMode: false,
-          isHeroMode: currentTime.hours >= baseHour
+          isHeroMode: currentTime.hours >= baseHour,
+          isWarningMode: currentTime.hours < baseHour
         })
         this.getUserData()
 
@@ -219,16 +221,34 @@ export default class App extends Component {
 
     return (
       <div>
-        <Header handleScroll={this.handleScroll} modalRef={modalRef} monthesRowRef={el => this.monthesRowRef = el} />
-        <Calendar calendarRef={el => this.calendarRef = el} handleScroll={this.handleScroll} />
+        <Header
+          handleScroll={this.handleScroll}
+          modalRef={modalRef}
+          monthesRowRef={el => this.monthesRowRef = el} />
 
-        <Footer modalRef={modalRef} authRef={authRef} />
+        <Calendar
+          calendarRef={el => this.calendarRef = el}
+          handleScroll={this.handleScroll} />
 
-        { this.state.isHeroMode && <Hero handleAnswer={this.onAnswer} handleClose={this.onHeroClose} /> }
-        { this.state.isHeroNotMode && <HeroNot login={this.login} /> }
-        { this.state.isWarningMode &&  <Alert /> }
+        <Footer
+          modalRef={modalRef}
+          authRef={authRef} />
 
-        <Info modalRef={modalRef} authRef={authRef} />
+        {this.state.isHeroMode
+          && <Hero
+              handleAnswer={this.onAnswer}
+              handleClose={this.onHeroClose} />
+        }
+        {this.state.isHeroNotMode
+          && <HeroNot login={this.login} />
+        }
+        {this.state.isWarningMode
+          &&  <Alert />
+        }
+
+        <Info
+          modalRef={modalRef}
+          authRef={authRef} />
       </div>
     )
   }

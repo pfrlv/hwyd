@@ -51,5 +51,10 @@
     color: $white;
     margin: 0 25px;
     display: inline-block;
+    will-change: opacity;
+    transition: opacity 160ms ease;
+
+    .Mouse &:hover,
+    &:active { opacity: 0.5; }
   }
 }

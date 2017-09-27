@@ -14,10 +14,10 @@ export default ({ modalRef, authRef }) => {
         </div>
         <div className='footer-bottom'>
           <span className='footer-txt'>{currentDay.yy}</span>
-          <span className='footer-txt'>hwyd by Ƨatire</span>
+          <span className='footer-txt'>HWYD. by Ƨatire</span>
           { (authRef.user !== null)
-            ? <span className='footer-txt footer-txt_link' onClick={authRef.logout}>Signout</span>
-            : <span className='footer-txt footer-txt_link' onClick={authRef.login}>Signin with Facebook</span>
+            ? <span className='footer-txt footer-txt_link' onClick={authRef.logout}>Sign out</span>
+            : <span className='footer-txt footer-txt_link' onClick={authRef.login}>Sign in with Facebook</span>
           }
           { modalRef.state
             ? <a className='footer-txt footer-txt_link' onClick={modalRef.toggle} >Close</a>

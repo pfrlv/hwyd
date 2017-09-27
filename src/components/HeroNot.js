@@ -15,7 +15,7 @@ export default class extends Component {
       this.setState({
         isActive: true
       })
-    }, 400)
+    }, 10)
   }
 
   render() {
@@ -25,9 +25,9 @@ export default class extends Component {
         'hero_is-active': this.state.isActive
       })}>
       <div className="hero__body">
-        <p className="hero__text">First,</p>
+        <p className="hero__text">Oops! It’s your personal<br/>happy calendar, log in first.</p>
         <div className="hero__buttons">
-          <button type='log' onClick={this.props.login} className="hero__log">Enter with Facebook</button>
+          <button onClick={this.props.login} className="hero__button">Sign in with Facebook</button>
         </div>
       </div>
     </div>

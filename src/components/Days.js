@@ -17,7 +17,7 @@ function getDaysInMonth (month) {
 export default class extends Component {
   render() {
     const days = []
-    const {month} = this.props
+    const { month } = this.props
 
     for (let d = 1; d <= getDaysInMonth(month); d++) {
       const isToday = (month === current.mm && d === current.dd)
@@ -30,7 +30,10 @@ export default class extends Component {
         )} 
         data-day={d}
         ref={isToday && this.props.todayRef}
-        key={d}>{d}</span>
+        key={d}>
+          {d}
+          <span className="mark"></span>
+        </span>
       )
     }
 

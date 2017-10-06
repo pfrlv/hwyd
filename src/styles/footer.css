@@ -5,18 +5,17 @@
   right: 0;
   bottom: 0;
   width: 100vh;
-  height: 70px;
+  height: 80px;
   min-width: 580px;
-  transform: translateX(-70px) rotate(-90deg);
+  transform: translateX(-80px) rotate(-90deg);
   transform-origin: right top;
-  z-index: 10;
+  z-index: 99;
   user-select: none;
 }
 
 .footer-container {
   display: flex;
   flex-direction: column;
-  z-index: 999;
   width: 100%;
   padding: 0 20px;
   box-sizing: border-box;
@@ -53,10 +52,9 @@
   color: $white;
 
   &:first-child { padding-left: 0; }
-  &:last-of-type { padding-right: 30px; }
 
   &_link {
-    padding: 0 30px;
+    padding: 0 15px;
     will-change: opacity;
     transition: opacity 160ms ease;
     cursor: pointer;

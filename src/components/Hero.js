@@ -24,10 +24,8 @@ export default class extends Component {
 
   componentDidMount() {
     setTimeout(() => {
-      this.setState({
-        isActive: true
-      })
-    }, 400)
+      this.setState({ isActive: true })
+    }, 10)
   }
 
   render() {

@@ -12,16 +12,13 @@ export default class extends Component {
 
   componentDidMount() {
     setTimeout(() => {
-      this.setState({
-        isActive: true
-      })
+      this.setState({ isActive: true })
     }, 10)
   }
 
   render() {
     return (
-      <div className={classes({
-        'hero': true,
+      <div className={classes('hero', {
         'hero_is-active': this.state.isActive
       })}>
       <div className="hero__body">

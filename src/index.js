@@ -28,7 +28,7 @@ import registerServiceWorker from './registerServiceWorker'
   ? document.documentElement.classList.add('Touch')
   : document.documentElement.classList.add('Mouse')
 
-document.addEventListener('touchstart', function () {}, true)
+window.addEventListener('touchstart', function () {}, true)
 // ----------------------------------------------------------------------------
 
 // Render

@@ -27,15 +27,3 @@
 .is-today {
   color: $white;
 }
-
-.is-goodday {
-  background: $green;
-  color: $bg;
-  border-radius: 50%;
-}
-
-.is-badday {
-  background: $red;
-  color: $bg;
-  border-radius: 50%;
-}

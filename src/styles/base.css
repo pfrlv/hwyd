@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Heebo:300,400,900');
 
+@keyframes Loading {
+  from {
+    transform: scale(0.65);
+  }
+  to {
+    transform: scale(1.0);
+  }
+}
+
 * {
   outline: none;
 }
@@ -46,7 +55,17 @@ button {
   background: none;
 }
 
-.mark {
-  &_red { color: $red }
-  &_green { color: $green }
+.loader {
+  position: fixed;
+  left: 10px;
+  bottom: 10px;
+
+  &__icon {
+    display: block;
+    width: 15px;
+    height: 15px;
+    background-color: $gray;
+    border-radius: 100%;
+    animation: Loading 400ms cubic-bezier(.175,.8,.35,1.375) alternate infinite;
+  }
 }

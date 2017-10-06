@@ -17,12 +17,13 @@ export default ({ modalRef, authRef }) => (
             </p>
           </div>
           <div className='info-auth'>
-            { (authRef.user !== null) ? <button type='log' onClick={authRef.logout} className='info-log'>Sign out</button> : <button type='log' onClick={authRef.login} className='info-log'>Sign in with Facebook</button> }
+            <button onClick={(authRef.user !== null) ? authRef.logout : authRef.login}
+              className='info-auth__button'>{(authRef.user !== null) ? 'Sign out' : 'Sign in with Facebook'}</button>
           </div>
         </div>
         <div className='info-footer'>
           <span className='info-footer_text'>2017</span>
-          <span className='info-footer_text'>hwyd by Ƨatire</span>
+          <span className='info-footer_text'>HWYD. by Ƨatire</span>
         </div>
       </div>
     </div>

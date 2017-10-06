@@ -13,20 +13,14 @@ export default ({ handleScroll, modalRef, monthesRowRef }) => (
           <img className='header-logo-img' alt='hwyd.' src={logo} />
         </div>
         <div className="header-info">
-
-          { modalRef.state 
-            ? <button className="header-info-button" onClick={modalRef.toggle}>Close</button>
-            : <button className="header-info-button" onClick={modalRef.toggle}>About</button>
-          }
-
+          <button className="header-info-button" onClick={modalRef.toggle}>{modalRef.state ? 'Close' : 'About'}</button>
         </div>
       </div>
       <div className='row_body'>
         <div className='row_scroll'
           ref={monthesRowRef}
           onTouchMove={handleScroll}
-          onWheel={handleScroll}
-          onScroll={handleScroll}>
+          onWheel={handleScroll}>
           <div className='row row_mobile'>
             <span className='column-cell column-cell_month'>Jan.</span>
             <span className='column-cell column-cell_month'>Feb.</span>

@@ -50,14 +50,14 @@
 
 .alert__hide {
   display: block;
-  opacity: .4;
+  opacity: 1.0;
   margin: auto;
   padding: 15px;
   will-chnage: opacity;
   transition: opacity 160ms ease;
 
   .Mouse &:hover,
-  &:active { opacity: 1; }
+  &:active { opacity: 0.4; }
 
   &:after {
     content: '';

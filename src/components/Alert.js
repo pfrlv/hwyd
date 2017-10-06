@@ -29,10 +29,8 @@ export default class extends Component {
 
   componentDidMount() {
     setTimeout(() => {
-      this.setState({
-        isHidden: false
-      })
-    }, 40)
+      this.setState({ isHidden: false })
+    }, 10)
   }
 
   toggle() {

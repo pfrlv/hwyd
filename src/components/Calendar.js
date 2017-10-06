@@ -31,7 +31,6 @@ export default class extends Component {
       <div className='clndr-wrap'>
         <div className='clndr-container'
           ref={this.props.calendarRef}
-          onScroll={this.props.handleScroll}
           onTouchMove={this.props.handleScroll}
           onWheel={this.props.handleScroll}>
           <div className='clndr-track'>

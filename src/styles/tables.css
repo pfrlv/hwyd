@@ -1,11 +1,11 @@
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: scale(0.1);
+    transform: scale(0.1) translateZ(0);
   }
   to {
     opacity: 1;
-    transform: scale(1.0);
+    transform: scale(1.0) translateZ(0);
   }
 }
 
@@ -54,6 +54,7 @@
     position: relative;
     will-change: color;
     transition: color 300ms cubic-bezier(.175,.8,.35,1.375);
+    backface-visibility: hidden;
   }
 
   &.is-today { color: $white; }
@@ -63,9 +64,7 @@
   &.is-bad-day.is-today,
   &.is-good-day.is-today { color: $bg !important; }
 
-  &.is-bad-day:before,
-  &.is-good-day:before {
-    content: '';
+  & .mark {
     position: absolute;
     display: block;
     width: 65px;
@@ -75,11 +74,16 @@
     border-radius: 100%;
     z-index: -1;
     will-change: transform, opacity;
+    transform: translateZ(0);
+  }
+
+  &.is-bad-day .mark,
+  &.is-good-day .mark {
     animation: fadeIn 300ms cubic-bezier(.175,.8,.35,1.375);
   }
 
-  &.is-bad-day:before { background-color: $red;  }
-  &.is-good-day:before { background-color: $green; }
+  &.is-bad-day .mark{ background-color: $red;  }
+  &.is-good-day .mark { background-color: $green; }
 
   &_month {
     font-weight: 900;

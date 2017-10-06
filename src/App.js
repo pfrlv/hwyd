@@ -11,6 +11,7 @@ import Alert from './components/Alert'
 import Hero from './components/Hero'
 import HeroNot from './components/HeroNot'
 import Info from './components/Info'
+import Loader from './components/Loader'
 
 const baseHour = 20
 
@@ -24,7 +25,8 @@ export default class App extends Component {
       isHeroMode: false,
       isHeroNotMode: false,
       isWarningMode: false,
-      isModalOpen: false
+      isModalOpen: false,
+      isLoading: false
     }
 
     this.handleScroll = this.handleScroll.bind(this)
@@ -49,6 +51,7 @@ export default class App extends Component {
         isHeroNotMode: true,
         isHeroMode: false
       })
+
       return
     }
 
@@ -70,6 +73,7 @@ export default class App extends Component {
   }
 
   login() {
+    this.setState({ isLoading: true })
     auth.signInWithPopup(provider)
       .then((result) => {
         const user = result.user
@@ -85,6 +89,9 @@ export default class App extends Component {
             this.setNewUser()
           }
         })
+      })
+      .catch((e) => {
+        this.setState({ isLoading: false })
       })
   }
 
@@ -119,7 +126,9 @@ export default class App extends Component {
       .ref('users/')
       .child(this.state.user.uid)
       .on('value', snap => {
-        this.setState({userDB: snap.val()}, () => this.setUserData())
+        this.setState({
+          userDB: snap.val()
+        }, () => this.setUserData())
       })
   }
 
@@ -164,6 +173,8 @@ export default class App extends Component {
         d.classList.add('is-good-day')
       }
     }
+
+    this.setState({ isLoading: false })
   }
 
   setNewUser() {
@@ -173,6 +184,8 @@ export default class App extends Component {
         username: this.state.user.displayName,
         email: this.state.user.email
       })
+
+      this.setState({ isLoading: false })
   }
 
   componentWillMount () {
@@ -187,6 +200,7 @@ export default class App extends Component {
           isHeroMode: currentTime.hours >= baseHour,
           isWarningMode: currentTime.hours < baseHour
         })
+
         this.getUserData()
 
         firebase.database()
@@ -239,9 +253,11 @@ export default class App extends Component {
               handleAnswer={this.onAnswer}
               handleClose={this.onHeroClose} />
         }
+
         {this.state.isHeroNotMode
           && <HeroNot login={this.login} />
         }
+
         {this.state.isWarningMode
           &&  <Alert />
         }
@@ -249,6 +265,10 @@ export default class App extends Component {
         <Info
           modalRef={modalRef}
           authRef={authRef} />
+
+        {this.state.isLoading
+          && <Loader />
+        }
       </div>
     )
   }

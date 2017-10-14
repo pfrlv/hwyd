@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import firebase, { auth, provider } from './helpers/firebase'
+import page from 'page'
 import currentDay from './helpers/getToday'
 import currentTime from './helpers/getTime'
 
@@ -10,10 +11,12 @@ import Footer from './components/Footer'
 import Alert from './components/Alert'
 import Hero from './components/Hero'
 import HeroNot from './components/HeroNot'
-import Info from './components/Info'
+import About from './components/Info'
 import Loader from './components/Loader'
+import Privacy from './components/Privacy'
 
 const baseHour = 20
+const $root = document.getElementById('root')
 
 export default class App extends Component {
   constructor(props) {
@@ -25,12 +28,12 @@ export default class App extends Component {
       isHeroMode: false,
       isHeroNotMode: false,
       isWarningMode: false,
-      isModalOpen: false,
-      isLoading: false
+      isLoading: false,
+      page: null,
+      route: null
     }
 
     this.handleScroll = this.handleScroll.bind(this)
-    this.toggleModalWin = this.toggleModalWin.bind(this)
     this.onAnswer = this.onAnswer.bind(this)
     this.onHeroClose = this.onHeroClose.bind(this)
 
@@ -39,10 +42,47 @@ export default class App extends Component {
 
     this.setUserData = this.setUserData.bind(this)
     this.removeUserData = this.removeUserData.bind(this)
+
+    this.initRouting = this.initRouting.bind(this)
   }
 
   handleScroll (ev) {
     this.monthesRowRef.scrollLeft = this.calendarRef.scrollLeft = ev.currentTarget.scrollLeft
+  }
+
+  initRouting() {
+    page('/', (ctx, next) => {
+      this.setState({
+        page: null,
+        route: null
+      })
+      next()
+    })
+
+    page('/privacy', (ctx, next) => {
+      this.setState({
+        page: <Privacy isInit={ctx.init} login={this.login} logout={this.logout} user={this.state.user} />,
+        route: ctx.path
+      })
+    })
+
+    page('/about', (ctx, next) => {
+      this.setState({
+        page: <About isInit={ctx.init} login={this.login} logout={this.logout} user={this.state.user} />,
+        route: ctx.path
+      })
+    })
+
+    page.exit('/:page', (ctx, next) => {
+      $root.classList.add('is-exit')
+
+      setTimeout(() => {
+        $root.classList.remove('is-exit')
+        next()
+      }, 300)
+    })
+
+    page()
   }
 
   onAnswer (isGodday) {
@@ -69,14 +109,18 @@ export default class App extends Component {
       .then(() => {
         this.setState({user: null})
         this.removeUserData()
+        page('/')
       })
   }
 
   login() {
     this.setState({ isLoading: true })
+
     auth.signInWithPopup(provider)
       .then((result) => {
         const user = result.user
+
+        page('/')
 
         this.setState({ user })
 
@@ -100,12 +144,7 @@ export default class App extends Component {
       day: currentDay.dd,
       month: currentDay.mm
     }, () => {
-      // Show thx msg & close after timeout
-      this.setState({
-        isHeroActive: false
-      })
-
-
+      this.setState({ isHeroActive: false })
     })
   }
 
@@ -114,10 +153,7 @@ export default class App extends Component {
       day: currentDay.dd,
       month: currentDay.mm
     }, () => {
-      // Show thx msg & close after timeout
-      this.setState({
-        isHeroActive: false
-      })
+      this.setState({ isHeroActive: false })
     })
   }
 
@@ -144,33 +180,39 @@ export default class App extends Component {
     const badDays = this.state.userDB.baddays
     const godDays = this.state.userDB.gooddays
 
-    if(badDays) {
-      for (let days in badDays) {
-        if((badDays[days].month === currentDay.mm) && (badDays[days].day === currentDay.dd)) {
-          this.setState({
-            isHeroMode: false
-          })
+    if(!badDays && !godDays) {
+      this.setState({
+        isHeroMode: currentTime.hours > baseHour
+      })
+    } else {
+      if(badDays) {
+        for (let days in badDays) {
+          if((badDays[days].month !== currentDay.mm) || (badDays[days].day !== currentDay.dd)) {
+            this.setState({
+              isHeroMode: currentTime.hours > baseHour
+            })
+          }
+
+          const m = document.querySelector('[data-month="' + badDays[days].month + '"]')
+          const d = m.querySelector('[data-day="' + badDays[days].day + '"]')
+
+          d.classList.add('is-bad-day')
         }
-
-        const m = document.querySelector('[data-month="' + badDays[days].month + '"]')
-        const d = m.querySelector('[data-day="' + badDays[days].day + '"]')
-
-        d.classList.add('is-bad-day')
       }
-    }
 
-    if(godDays) {
-      for (let days in godDays) {
-        if((godDays[days].month === currentDay.mm) && (godDays[days].day === currentDay.dd)) {
-          this.setState({
-            isHeroMode: false
-          })
+      if(godDays) {
+        for (let days in godDays) {
+          if((godDays[days].month !== currentDay.mm) || (godDays[days].day !== currentDay.dd)) {
+            this.setState({
+              isHeroMode: currentTime.hours > baseHour
+            })
+          }
+
+          const m = document.querySelector('[data-month="' + godDays[days].month + '"]')
+          const d = m.querySelector('[data-day="' + godDays[days].day + '"]')
+
+          d.classList.add('is-good-day')
         }
-
-        const m = document.querySelector('[data-month="' + godDays[days].month + '"]')
-        const d = m.querySelector('[data-day="' + godDays[days].day + '"]')
-
-        d.classList.add('is-good-day')
       }
     }
 
@@ -196,8 +238,6 @@ export default class App extends Component {
       if (user) {
         this.setState({
           user,
-          isHeroNotMode: false,
-          isHeroMode: currentTime.hours >= baseHour,
           isWarningMode: currentTime.hours < baseHour
         })
 
@@ -208,36 +248,23 @@ export default class App extends Component {
           .child(this.state.user.uid)
       } else {
         this.setState({
-          isHeroMode: currentTime.hours >= baseHour,
+          isHeroMode: currentTime.hours > baseHour,
           isWarningMode: currentTime.hours < baseHour
         })
       }
     })
   }
 
-  toggleModalWin() {
-    this.setState(prevState => ({
-      isModalOpen: !prevState.isModalOpen
-    }))
+  componentDidMount() {
+    this.initRouting()
   }
 
   render() {
-    const authRef = {
-      user: this.state.user,
-      login: this.login,
-      logout: this.logout
-    }
-
-    const modalRef = {
-      toggle: this.toggleModalWin,
-      state: this.state.isModalOpen
-    }
-
     return (
       <div>
         <Header
+          route={this.state.route}
           handleScroll={this.handleScroll}
-          modalRef={modalRef}
           monthesRowRef={el => this.monthesRowRef = el} />
 
         <Calendar
@@ -245,8 +272,10 @@ export default class App extends Component {
           handleScroll={this.handleScroll} />
 
         <Footer
-          modalRef={modalRef}
-          authRef={authRef} />
+          route={this.state.route}
+          user={this.state.user}
+          login={this.login}
+          logout={this.logout} />
 
         {this.state.isHeroMode
           && <Hero
@@ -262,13 +291,11 @@ export default class App extends Component {
           &&  <Alert />
         }
 
-        <Info
-          modalRef={modalRef}
-          authRef={authRef} />
-
         {this.state.isLoading
           && <Loader />
         }
+
+        { this.state.page }
       </div>
     )
   }

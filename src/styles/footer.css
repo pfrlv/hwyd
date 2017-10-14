@@ -59,6 +59,12 @@
     transition: opacity 160ms ease;
     cursor: pointer;
 
+    &_current {
+      cursor: default;
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
     .Mouse &:hover,
     &:active { opacity: 0.5; }
   }

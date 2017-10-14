@@ -1,3 +1,35 @@
+@keyframes FadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes FadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes ShowText {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
+  }
+  50% {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  } 
+}
+
 .privacy {
   position: fixed;
   top: 46px @(min-width: $tabletLandscapeUp) 0;
@@ -12,6 +44,13 @@
   color: $white;
   background-color: $bg;
   overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  will-change: opacity;
+  animation: FadeIn 300ms ease;
+
+  .is-exit & {
+    animation: FadeOut 300ms ease both !important;
+  }
 
   &__body {
     max-width: 600px;
@@ -23,6 +62,17 @@
 
   &__section {
     margin-bottom: 45px;
+    animation: ShowText 300ms ease-out both;
+
+    &:nth-child(1) { animation-delay: 400ms; }
+    &:nth-child(2) { animation-delay: 450ms; }
+    &:nth-child(3) { animation-delay: 500ms; }
+    &:nth-child(4) { animation-delay: 550ms; }
+    &:nth-child(5) { animation-delay: 600ms; }
+    &:nth-child(6) { animation-delay: 650ms; }
+    &:nth-child(7) { animation-delay: 700ms; }
+    &:nth-child(8) { animation-delay: 750ms; }
+    &:nth-child(9) { animation-delay: 800ms; }
   }
 
   h1 {
@@ -30,6 +80,7 @@
     line-height: 40px;
     font-weight: 900;
     margin: 0 0 15px;
+    animation: ShowText 300ms 350ms ease-out both;
   }
 
   h2 {

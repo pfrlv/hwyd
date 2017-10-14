@@ -69,3 +69,8 @@ button {
     animation: Loading 400ms cubic-bezier(.175,.8,.35,1.375) alternate infinite;
   }
 }
+
+.no-animate,
+.no-animate * {
+  animation: none !important;
+}

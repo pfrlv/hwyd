@@ -1,14 +1,17 @@
 import React from 'react'
+import classes from 'classnames'
 
-export default () => (
-  <div className="privacy">
+export default ({ isInit }) => (
+  <div className={classes('privacy', {
+    'no-animate': isInit
+  })}>
     <section className="privacy__body">
+      <h1>Privacy Policy</h1>
       <div className="privacy__section">
-        <h1>Privacy Policy</h1>
         Satire Ltd. operates the <a href="https://hwyd.today">https://hwyd.today</a> website, which provides the Service.
         This page is used to inform website visitors regarding our policies with the collection, use, and disclosure of Personal Information if anyone decided to use our Service.
         If you choose to use our Service, then you agree to the collection and use of information in relation with this policy. The Personal Information that we collect are used for providing and improving the Service. We will not use or share your information with anyone except as described in this Privacy Policy.
-        The terms used in this Privacy Policy have the same meanings as in our Terms and Conditions, which is accessible at https://hwyd.today/policy, unless otherwise defined in this Privacy Policy.
+        The terms used in this Privacy Policy have the same meanings as in our Terms and Conditions, which is accessible at <a href="https://hwyd.today/privacy">https://hwyd.today/privacy</a>, unless otherwise defined in this Privacy Policy.
       </div>
       <div className="privacy__section">
         <h2>Information Collection and Use</h2>
@@ -41,7 +44,7 @@ export default () => (
       </div>
       <div className="privacy__section">
         <h2>Contact Us</h2>
-        If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us.
+        If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us va pfrlvgg@gmail.com
       </div>
     </section>
   </div>

@@ -1,3 +1,21 @@
+@keyframes FadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes FadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
 .info-win {
   position: fixed;
   top: 46px @(min-width: $tabletLandscapeUp) 0px;
@@ -8,20 +26,13 @@
   left: @(min-width: $tabletLandscapeUp) 0;
   margin-right: @(min-width: $tabletLandscapeUp) auto;
   margin-left: @(min-width: $tabletLandscapeUp) auto;
-  will-change: opacity, visibility;
   color: $white;
-}
+  will-change: opacity;
+  animation: FadeIn 300ms ease-out both;
 
-.info-win_is-close {
-  opacity: 0.0;
-  visibility: hidden;
-  transition: opacity 200ms, visibility 0ms 200ms @(min-width: $tabletLandscapeUp) opacity 200ms 150ms, visibility 0ms 350ms;
-}
-
-.info-win_is-open {
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 200ms;
+  .is-exit & {
+    animation: FadeOut 300ms ease-out both !important;
+  }
 }
 
 .info-container {
@@ -52,18 +63,7 @@
   font-size: 18px;
   line-height: 25px;
   will-change: transform;
-}
-
-.info-win_is-close .info-text {
-  transition: @(min-width: $tabletLandscapeUp) transform 200ms, opacity 200ms;
-  transform: @(min-width: $tabletLandscapeUp) translate3d(0, 30px, 0);
-  opacity: @(min-width: $tabletLandscapeUp) 0;
-}
-
-.info-win_is-open .info-text {
-  transition: @(min-width: $tabletLandscapeUp) transform 200ms 200ms cubic-bezier(.175,.8,.35,1.375), opacity 200ms 200ms;
-  transform: translate3d(0, 0, 0);
-  opacity: @(min-width: $tabletLandscapeUp) 1;
+  animation: @(min-width: $tabletLandscapeUp) ShowText 300ms 350ms ease-out both;
 }
 
 .info-auth {
@@ -81,13 +81,16 @@
   font-size: inherit;
   line-height: 50px;
   font-size: 18px;
-  border: 1px solid $lightGray;
-  will-change: color;
-  transition: color 160ms ease;
+  border: 1px solid #fff;
+  will-change: background-color, color;
+  transition: background-color 160ms ease-out, color 160ms ease-out;
+  background: #fff;
+  color: #000;
 
   .Mouse &:hover,
   &:active {
-    color: $lightGray;
+    background-color: transparent;
+    color: #fff;
   }
 }
 
@@ -95,10 +98,22 @@
   padding: 0 25px 15px;
   display: flex @(min-width: $tabletLandscapeUp) none;
   justify-content: space-between;
+  align-items: flex-end;
 
   &_text {
-    display: inline-block;
+    display: table;
     font-size: 16px;
-    line-height: 45px;
+    line-height: 35px;
+  }
+
+  &_text_link {
+    display: table;
+    will-change: color;
+    transition: color 160ms ease;
+
+    .Mouse &:hover,
+    &:active {
+      color: $lightGray;
+    }
   }
 }

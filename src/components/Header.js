@@ -1,23 +1,25 @@
 import React from 'react'
-import classes from 'classnames'
 
 import logo from './../assets/Logo.svg'
+import contains from './../helpers/contains'
 
-export default ({ handleScroll, modalRef, monthesRowRef }) => (
+export default ({ route, handleScroll, monthesRowRef }) => (
   <div className='header-wrap'>
-    <div className={classes('header-container_mobile', {
-        'is_modal_open': modalRef.state
-      })}>
+    <div className="header-container_mobile">
       <div className='container_fixed'>
-        <div className='header-logo-wrap'>
+        <a href="/" className='header-logo-wrap'>
           <img className='header-logo-img' alt='hwyd.' src={logo} />
-        </div>
+        </a>
         <div className="header-info">
-          <button className="header-info-button" onClick={modalRef.toggle}>{modalRef.state ? 'Close' : 'About'}</button>
+          {contains(route, 'about')
+            ? <span className="header-info-button header-info-button_current">About</span>
+            : <a href="/about" className="header-info-button">About</a>
+          }
         </div>
       </div>
       <div className='row_body'>
         <div className='row_scroll'
+          id="month-list"
           ref={monthesRowRef}
           onTouchMove={handleScroll}
           onWheel={handleScroll}>

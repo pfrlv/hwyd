@@ -4,19 +4,20 @@
   "private": true,
   "repository": "https://github.com/pfrlv/hwyd",
   "dependencies": {
-    "autoprefixer": "^7.1.4",
+    "autoprefixer": "^7.1.5",
     "classnames": "^2.2.5",
     "css-mqpacker": "^6.0.1",
     "cssnano": "^3.10.0",
-    "firebase": "^4.4.0",
+    "firebase": "^4.5.1",
+    "page": "^1.7.1",
     "postcss-cli": "^4.1.1",
     "postcss-import": "^11.0.0",
     "postcss-inline-media": "^0.0.1",
     "postcss-nested": "^2.1.2",
     "postcss-simple-vars": "^4.1.0",
-    "react": "^15.6.2",
-    "react-dom": "^15.6.2",
-    "react-scripts": "1.0.13"
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-scripts": "^1.0.14"
   },
   "scripts": {
     "css:watch": "postcss src/styles/index.css -o src/index.css -w",

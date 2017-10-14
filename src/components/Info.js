@@ -1,10 +1,9 @@
 import React from 'react'
 import classes from 'classnames'
 
-export default ({ modalRef, authRef }) => (
+export default ({ isInit, login, logout, user }) => (
   <div className={classes('info-win', {
-    'info-win_is-open': modalRef.state,
-    'info-win_is-close': !modalRef.state
+    'no-animate': isInit
   })}>
     <div className='info-container'>
       <div className='info-track'>
@@ -17,12 +16,15 @@ export default ({ modalRef, authRef }) => (
             </p>
           </div>
           <div className='info-auth'>
-            <button onClick={(authRef.user !== null) ? authRef.logout : authRef.login}
-              className='info-auth__button'>{(authRef.user !== null) ? 'Sign out' : 'Sign in with Facebook'}</button>
+            <button onClick={user ? logout : login}
+              className='info-auth__button'>{user ? 'Sign out' : 'Sign in with Facebook'}</button>
           </div>
         </div>
         <div className='info-footer'>
-          <span className='info-footer_text'>2017</span>
+          <div>
+            <a href="/privacy" className="info-footer_text info-footer_text_link">Privacy</a>
+            <span className='info-footer_text'>2017</span>
+          </div>
           <span className='info-footer_text'>HWYD. by Ƨatire</span>
         </div>
       </div>

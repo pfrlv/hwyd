@@ -9,15 +9,16 @@ export default class extends Component {
   }
 
   componentDidMount () {
-    window.addEventListener('load', this.updateScrollPosition)
+    global.addEventListener('load', this.updateScrollPosition)
   }
 
   updateScrollPosition () {
     const todayBounds = this.todayRef.getBoundingClientRect()
-    const todayPosY = (todayBounds.top + todayBounds.height / 2) - window.innerHeight / 2
-    const todayPosX = (todayBounds.left + todayBounds.width / 2) - window.innerWidth / 2
+    const todayPosY = (todayBounds.top + todayBounds.height / 2) - global.innerHeight / 2
+    const todayPosX = (todayBounds.left + todayBounds.width / 2) - global.innerWidth / 2
 
-    document.querySelector('.clndr-container').scrollTo(todayPosX, todayPosY)
+    document.getElementById('days-list').scrollTo(todayPosX, todayPosY)
+    document.getElementById('month-list').scrollTo(todayPosX, todayPosY)
   }
 
   render () {
@@ -30,6 +31,7 @@ export default class extends Component {
     return (
       <div className='clndr-wrap'>
         <div className='clndr-container'
+          id="days-list"
           ref={this.props.calendarRef}
           onTouchMove={this.props.handleScroll}
           onWheel={this.props.handleScroll}>

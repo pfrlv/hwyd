@@ -32,7 +32,7 @@ window.addEventListener('touchstart', function () {}, true)
 // ----------------------------------------------------------------------------
 
 // Render
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.hydrate(<App />, document.getElementById('root'))
 // ----------------------------------------------------------------------------
 
 registerServiceWorker()
